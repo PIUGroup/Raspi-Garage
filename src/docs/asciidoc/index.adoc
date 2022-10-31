@@ -9,9 +9,11 @@ ifndef::imagesdir[:imagesdir: images]
 :toc-title: Inhaltsverzeichnis
 :sectnums:
 
+:url-raspidoc: https://www.raspberrypi.com/documentation/
+
 == Quellen
 
-* https://www.raspberrypi.com/documentation/[Offizielle Dokumentation at Github]
+* {url-raspidoc}[Offizielle Dokumentation at Github,role=external,window=_blank]
 
 include::hardware/01-uebersicht.adoc[]
 
