@@ -11,7 +11,7 @@ ifndef::imagesdir[:imagesdir: images]
 
 == Quellen
 
-* [Offizielle Dokumentation at Github](https://www.raspberrypi.com/documentation/)
+* https://www.raspberrypi.com/documentation/[Offizielle Dokumentation at Github]
 
 include::hardware/01-uebersicht.adoc[]
 
