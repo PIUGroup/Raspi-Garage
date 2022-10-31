@@ -1,0 +1,19 @@
+= Raspi-Garage
+
+Initiator: Thomas Schubert (Huluvu424242) <huluvu424242@gmail.com>
+
+ifndef::imagesdir[:imagesdir: images]
+
+:Author:    Thomas Schubert (Huluvu424242) et. al
+:Email:     <huluvu424242@gmail.com>
+:toc-title: Inhaltsverzeichnis
+:sectnums:
+
+
+
+include::hardware/01_Uebersicht.adoc[]
+
+include::software/01_Uebersicht.adoc[]
+
+include::projekte/01_Uebersicht.adoc[]
+
