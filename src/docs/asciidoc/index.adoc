@@ -11,9 +11,9 @@ ifndef::imagesdir[:imagesdir: images]
 
 
 
-include::hardware/01_Uebersicht.adoc[]
+include::hardware/01-uebersicht.adoc[]
 
-include::software/01_Uebersicht.adoc[]
+include::software/01-uebersicht.adoc[]
 
-include::projekte/01_Uebersicht.adoc[]
+include::projekte/01-uebersicht.adoc[]
 
