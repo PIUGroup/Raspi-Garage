@@ -9,7 +9,9 @@ ifndef::imagesdir[:imagesdir: images]
 :toc-title: Inhaltsverzeichnis
 :sectnums:
 
+== Quellen
 
+* [Offizielle Dokumentation at Github](https://www.raspberrypi.com/documentation/)
 
 include::hardware/01-uebersicht.adoc[]
 
