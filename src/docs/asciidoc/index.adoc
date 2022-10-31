@@ -1,0 +1,23 @@
+= Raspi-Garage
+
+Initiator: Thomas Schubert (Huluvu424242) <huluvu424242@gmail.com>
+
+ifndef::imagesdir[:imagesdir: images]
+
+:Author:    Thomas Schubert (Huluvu424242) et. al
+:Email:     <huluvu424242@gmail.com>
+:toc-title: Inhaltsverzeichnis
+:sectnums:
+
+:url-raspidoc: https://www.raspberrypi.com/documentation/
+
+== Quellen
+
+* {url-raspidoc}[Offizielle Dokumentation at Github,role=external,window=_blank]
+
+include::hardware/01-uebersicht.adoc[]
+
+include::software/01-uebersicht.adoc[]
+
+include::projekte/01-uebersicht.adoc[]
+
