@@ -2,8 +2,8 @@ name: Site Generierung und Push
 
 on:
   push:
-    branches:    
-    - 'master'
+#    branches:
+#    - 'master'
 
 jobs:
   deploy:
@@ -22,6 +22,7 @@ jobs:
       run: |
         git clone https://github.com/${GITHUB_REPOSITORY}.git
         cd `ls -d */`
+        git checkout ${GITHUB_REF_NAME}
         rm -rf docs/*
         chmod +x ./mvnw
         mkdir -p ~/.m2

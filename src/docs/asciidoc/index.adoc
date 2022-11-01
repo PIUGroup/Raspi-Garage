@@ -7,7 +7,10 @@ ifndef::imagesdir[:imagesdir: images]
 :Author:    Thomas Schubert (Huluvu424242) et. al
 :Email:     <huluvu424242@gmail.com>
 :toc-title: Inhaltsverzeichnis
+:toc:
 :sectnums:
+:xrefstyle: short
+
 
 :url-raspidoc: https://www.raspberrypi.com/documentation/
 
