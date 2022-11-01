@@ -6,6 +6,11 @@
 
 ==== Kühler ankleben
 
+image:./raspi4b_vorKühleranbau.svg[title=Vor Kühleranbau]
+
+image:./raspi4b_vorKühleranbau.svg[title=Nach Kühleranbau]
+
+xref:../../index.adoc#content[Zurück zur Übersicht].
 
 ==== Lüfter anschließen
 
