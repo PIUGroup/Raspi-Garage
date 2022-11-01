@@ -2,12 +2,16 @@
 
 ==== Quellen
 
-* https://www.youtube.com/watch?v=aV6cQ226wak
+* https://www.youtube.com/watch?v=aV6cQ226wak[Raspberry Pi 4 (Model B 4GB) montieren und anschließen Anleitung,role=external,window=_blank]
 
 ==== Kühler ankleben
 
 
 ==== Lüfter anschließen
-Rotes Kabel an Pin 4 der GPIO Schnittstelle (5 Volt +)
-Schwarzes Kabel an Pin 6 der GPIO Schnittstelle (Ground)
-image:./images/raspi4b_lüfteranschluss.svg[title=Lüfteranschluss]
+
+* Rotes Kabel an Pin 4 der GPIO Schnittstelle (5 Volt +)
+* Schwarzes Kabel an Pin 6 der GPIO Schnittstelle (Ground)
+
+image:./raspi4b_lüfteranschluss.svg[title=Lüfteranschluss]
+
+xref:../../index.adoc#content[Zurück zur Übersicht].

@@ -2,4 +2,4 @@
 
 === Raspberry Pi 4 Modell B
 
-* link:raspi4b/01-montageanleitung.adoc[Montageanleitung]
+* link:hardware/raspi4b/01-montageanleitung.html[Montageanleitung]
