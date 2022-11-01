@@ -8,7 +8,7 @@
 
 image:./raspi4b_vorKühleranbau.svg[title=Vor Kühleranbau]
 
-image:./raspi4b_vorKühleranbau.svg[title=Nach Kühleranbau]
+image:./raspi4b_nachKühleranbau.svg[title=Nach Kühleranbau]
 
 xref:../../index.adoc#content[Zurück zur Übersicht].
 
