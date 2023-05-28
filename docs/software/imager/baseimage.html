@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.16">
-<title>Projektübersicht</title>
+<title>Installation mittels Imager</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -443,15 +443,55 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#projektübersicht">Projektübersicht</a></li>
+<li><a href="#installation-mittels-imager">Installation mittels Imager</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
+<div class="paragraph">
+<p>Bevor ihr ein Betriebssystem in Form eines images installiert, solltet Ihr den Pi zusammengebaut und angeschlossen haben. Wie das geht habe ich beschrieben in <a href="../../hardware/raspi4b/01-montageanleitung.html">Raspberry Pi 4 Model B zusammenbauen</a>.</p>
+</div>
 <div class="sect1">
-<h2 id="projektübersicht"><a class="anchor" href="#projektübersicht"></a>Projektübersicht</h2>
+<h2 id="installation-mittels-imager"><a class="anchor" href="#installation-mittels-imager"></a>Installation mittels Imager</h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p>Als erstes benötigt Ihr eine SD Karte, ich habe eine 32 GB große genutzt aber das sollte auch deutlich kleiner gehen.
+Generell würde ich immer ein Betriebssystem ohne Desktop aufsetzen (aktuell unter dem Namen "Raspberry Pi OS Lite" gehandelt),
+weil ich den Pi für Aufgaben benötige die er alleine ohne Nutzerinteraktionen erledigen soll. Beispielsweise Spam Unterdrückung
+mit pi-hole oder Synchronisation von Ablagen für Musik und Bücher mittels resilio-sync. Am einfachsten geht es über den Raspberry Pi
+Imager welchen ihr auf der verlinkten <a href="https://www.raspberrypi.com/software/">Raspi Homepage</a> herunterladen könnt.</p>
+</div>
+<div class="paragraph">
+<p>Der Imager bietet genügend Auswahl für eine einfache selbsterklärende Installation. Wichtig ist, dass Ihr unter
+Optionen schon mal den Hostnamen, die SSH Authentifizierungsart, einen Pi Nutzeraccount mit Passwort und den
+WLAN Zugang festlegen solltet. Auch ein bisl Schnick Schnack wie Sprache, Zeitzone und Programmverhalten
+verringern die noch notwendige Arbeit. Hier meine Einstellungen:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/imager-page1.png" alt="imager page1" title="Einstellungen Page1"></span>
+<span class="image"><img src="./images/imager-page2.png" alt="imager page2" title="Einstellungen Page2"></span>
+<span class="image"><img src="./images/imager-page3.png" alt="imager page3" title="Einstellungen Page3"></span></p>
+</div>
+<div class="paragraph">
+<p>Die Einträge sind natürlich nur Beispiele. Da der Nutzer früher Standard war, habe ich ihn als Beispiel eingetragen.
+Für die Sicherheit wäre es allerdings besser einen anderen Namen zu nutzen. Falls Ihr doch pi als Account wählt, wird
+Euch das System darauf hinweisen, dass es ungeschickt ist den Default Nutzer pi zu verwenden.</p>
+</div>
+<div class="paragraph">
+<p>Unter dem Punkt Raspberry Pi OS (other) lassen sich auch die Varianten ohne Desktop auswählen.</p>
+</div>
+<div class="paragraph">
+<p>Gut jetzt noch die SD Karte reinstecken und in der Auswahl die richtige SD Karte auswählen (da sollte man gut
+aufpassen und auf keinen Fall c: oder d: auswählen - sonst ist unter Windows, kein Windows mehr da) dann auf
+Schreiben und dann beginnt der Schreibprozess welcher das neue Raspi Image über alles bügelt was je vorher da
+gewesen ist - sprich die Daten die vorher auf der SD Karte waren, sind weg.</p>
+</div>
+<div class="paragraph">
+<p>Damit seid ihr fertig, das Image ist auf der SD Karte, die könnt ihr in den Pi stecken und ihn starten.</p>
+</div>
+<div class="paragraph">
+<p><a href="../../index.html#content">Zurück zur Übersicht</a>.</p>
+</div>
 </div>
 </div>
 </div>

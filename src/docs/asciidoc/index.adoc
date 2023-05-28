@@ -1,13 +1,14 @@
 = Raspi-Garage
-
-Initiator: Thomas Schubert (Huluvu424242) <huluvu424242@gmail.com>
-
-ifndef::imagesdir[:imagesdir: images]
+Thomas Schubert (Huluvu424242) <huluvu424242@gmail.com>
+v1.0, {docdate}
+:example-caption!:
+ifndef::imagesdir[:imagesdir: ./images]
 
 :Author:    Thomas Schubert (Huluvu424242) et. al
 :Email:     <huluvu424242@gmail.com>
 :toc-title: Inhaltsverzeichnis
 :toc:
+:icons: font
 :sectnums:
 :xrefstyle: short
 
@@ -24,3 +25,13 @@ include::software/01-uebersicht.adoc[]
 
 include::projekte/01-uebersicht.adoc[]
 
+
+// ## Metadaten
+//
+// .Built-in
+// asciidoctor-version:: {asciidoctor-version}
+// safe-mode-name:: {safe-mode-name}
+// docdir:: {docdir}
+// docfile:: {docfile}
+// imagesdir:: {imagesdir}
+// docdate:: {docdate}
