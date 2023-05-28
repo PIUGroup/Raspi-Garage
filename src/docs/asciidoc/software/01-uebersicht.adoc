@@ -1,1 +1,5 @@
 == Softwareübersicht
+
+=== Imager
+
+* xref:software/imager/baseimage.adoc[Grundimage aufspielen]
