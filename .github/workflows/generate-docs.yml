@@ -1,7 +1,10 @@
-name: Generate Static Content with commit und Push
+name: Site Creation
 
 on:
-  push:
+  workflow_run:
+    workflows: [ "CI Build" ]
+    types:
+      - completed
   workflow_dispatch: {}
 
 jobs:
