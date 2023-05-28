@@ -12,6 +12,7 @@
     <properties>
         <maven.version>3.9.1</maven.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.build.timestamp.format>dd.MM.yyyy</maven.build.timestamp.format>
         <asciidoctor.maven.plugin.version>2.2.1</asciidoctor.maven.plugin.version>
         <asciidoctorj.version>2.5.2</asciidoctorj.version>
         <asciidoctorj.diagram.version>2.2.1</asciidoctorj.diagram.version>
@@ -40,6 +41,10 @@
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>build-helper-maven-plugin</artifactId>
                     <version>3.3.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.2.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.asciidoctor</groupId>
@@ -126,6 +131,29 @@
                 </executions>
             </plugin>
             <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>clean-site</id>
+                        <phase>
+                            pre-clean
+                        </phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                        <configuration>
+                            <excludeDefaultDirectories>true</excludeDefaultDirectories>
+                            <filesets>
+                                <fileset>
+                                    <directory>/docs</directory>
+                                    <followSymlinks>false</followSymlinks>
+                                </fileset>
+                            </filesets>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
                 <configuration>
@@ -148,6 +176,10 @@
                             <attributes>
                                 <imagesdir>./images</imagesdir>
                                 <toc>left</toc>
+                                <revnumber>${project.version}</revnumber>
+                                <revdate>${maven.build.timestamp}</revdate>
+                                <docdate>${maven.build.timestamp}</docdate>
+                                <doctime/>
                                 <icons>font</icons>
                                 <sectanchors>true</sectanchors>
                                 <idprefix/>

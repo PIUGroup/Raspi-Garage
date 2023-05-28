@@ -2,5 +2,5 @@
 
 === Raspberry Pi 4 Modell B
 
-* xref:/docs/hardware/raspi4b/raspi4-aufbau.adoc[Aufbau]
-* xref:/docs/hardware/raspi4b/01-montageanleitung.adoc[Montageanleitung]
+* xref:hardware/raspi4b/raspi4-aufbau.adoc[Aufbau]
+* xref:hardware/raspi4b/01-montageanleitung.adoc[Montageanleitung]
