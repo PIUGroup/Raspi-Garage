@@ -2,8 +2,9 @@ name: Site Generierung und Push
 
 on:
   push:
-#    branches:
-#    - 'master'
+    branches:
+      - 'no'
+#      - 'master'
 
 jobs:
   deploy:
