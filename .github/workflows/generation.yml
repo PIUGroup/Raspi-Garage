@@ -1,10 +1,7 @@
-name: Site Generierung und Push
+name: Generate Static Content with commit und Push
 
 on:
   push:
-    branches:
-      # - 'master'
-      - 'no'
   workflow_dispatch: {}
 
 jobs:
