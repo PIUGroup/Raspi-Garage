@@ -34,3 +34,77 @@ sudo touch /pathToSDCard/boot/ssh
 Wichtig unter Windows: Darauf achten, dass nicht .txt oder eine andere Endung dran pappt.
 Gitbash oder Total Commander sind Euer Freund.
 
+
+== Nachkonfiguration auf dem PI
+
+=== Immer zu Beginn
+
+[source,bash]
+----
+sudo apt update
+sudo apt upgrade
+----
+
+=== Restart
+
+[source,bash]
+----
+sudo shutdown -r now
+----
+
+=== Halt
+[source,bash]
+----
+sudo shutdown now
+----
+
+=== Allgemeine Konfiguration ändern
+
+Dieses Skript führt die allgemeine Konfiguration auf dem Pi aus. Hier werden sowas wie Sprache, Zeitzone,
+Tastaturlayout etc. festgelegt:
+
+[source,bash]
+----
+/usr/bin/raspi-config
+----
+
+== WLAN einrichten
+
+(Quelle: https://www.elektronik-kompendium.de/sites/raspberry-pi/1912221.htm)
+Die Eintragungen für das WLAN erfolgen in der Datei wpa_supplicant.conf während der Pi per Netzwerkkabel mit einem PC
+verbunden und gestartet ist:
+
+[source,bash]
+----
+sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+----
+
+Die wpa_supplicant.conf kann beispielsweise für Freifunk Franken so angepasst werden:
+
+[source,bash]
+----
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=DE
+network={
+ssid=”franken.freifunk.net”
+key_mgmt=NONE
+priority=1
+}
+----
+
+Anschließend kann die Konfiguration ausprobiert werden:
+
+[source,bash]
+----
+sudo wpa_supplicant -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf
+----
+
+oder über:
+
+[source,bash]
+----
+ip l
+wpa_cli status
+----
+
