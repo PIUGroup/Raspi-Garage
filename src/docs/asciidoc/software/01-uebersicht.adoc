@@ -3,3 +3,4 @@
 === Imager
 
 * xref:software/imager/baseimage.adoc[Grundimage aufspielen]
+* xref:software/imager/manuell/manuellimage.adoc[Manuell Images Aufspielen und Einrichten]
