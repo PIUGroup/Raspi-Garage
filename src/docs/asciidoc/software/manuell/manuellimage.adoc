@@ -172,7 +172,7 @@ Diese Zeile aufnehmen (Vorher UUID und FS Type anpassen)
 
 `UUID=806203C46203BDC2 /mnt/usb ntfs uid=pi,gid=pi 0 0`
 
-icon:info[] !!! Kein Reboot mit fehlerhafter Konfiguration !!!
+IMPORTANT: !!! Kein Reboot mit fehlerhafter Konfiguration !!!
 
 Jetzt prüfen wir die Konfiguration
 
