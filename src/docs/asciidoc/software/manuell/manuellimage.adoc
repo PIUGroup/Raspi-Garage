@@ -3,6 +3,8 @@
 Ein Download des Images ist beispielsweise hier
 möglich: https://www.raspberrypi.com/software/operating-systems/[Images von raspberrypi.com]
 
+xref:../../index.adoc#content[Zurück zur Übersicht].
+
 == Aufspielen eines Images
 
 Ohne Imager nutzt man zum Aufspielen eines Images auf die SD Karte  üblicherweise den Linuxbefehl `dd`.
@@ -21,6 +23,8 @@ if:: steht für input Pfad, also der Weg zur Image
 of:: steht für output Pfad, also der Weg zur SD Karte (Korrekten Mount Path beachten!).
 
 
+xref:../../index.adoc#content[Zurück zur Übersicht].
+
 == SSH aktivieren
 Um SSH in einem Image von Anfang an zu aktivieren, muss man **vor dem ersten Booten des Images**
 unter dem Folder `/boot/` eine leer Date mit Namen `ssh` anlegen.
@@ -34,6 +38,8 @@ sudo touch /pathToSDCard/boot/ssh
 Wichtig unter Windows: Darauf achten, dass nicht .txt oder eine andere Endung dran pappt.
 Gitbash oder Total Commander sind Euer Freund.
 
+
+xref:../../index.adoc#content[Zurück zur Übersicht].
 
 == Nachkonfiguration auf dem PI
 
@@ -58,6 +64,8 @@ sudo shutdown -r now
 sudo shutdown now
 ----
 
+xref:../../index.adoc#content[Zurück zur Übersicht].
+
 === Allgemeine Konfiguration ändern
 
 Dieses Skript führt die allgemeine Konfiguration auf dem Pi aus. Hier werden sowas wie Sprache, Zeitzone,
@@ -67,6 +75,8 @@ Tastaturlayout etc. festgelegt:
 ----
 /usr/bin/raspi-config
 ----
+
+xref:../../index.adoc#content[Zurück zur Übersicht].
 
 == WLAN einrichten
 
@@ -107,6 +117,8 @@ oder über:
 ip l
 wpa_cli status
 ----
+
+xref:../../index.adoc#content[Zurück zur Übersicht].
 
 == USB - Mobile Festplatten einrichten
 
@@ -160,7 +172,7 @@ Diese Zeile aufnehmen (Vorher UUID und FS Type anpassen)
 
 `UUID=806203C46203BDC2 /mnt/usb ntfs uid=pi,gid=pi 0 0`
 
-icon:important[] !!! Kein Reboot mit fehlerhafter Konfiguration !!!
+icon:info[] !!! Kein Reboot mit fehlerhafter Konfiguration !!!
 
 Jetzt prüfen wir die Konfiguration
 
@@ -175,3 +187,5 @@ Dann geht es für Euch zurück auf Anfang! Oder ihr kennt wen der sich auskennt.
 Auf jeden Fall wird es schwierig wenn das automatische mounten kaputt ist.
 
 Im Notfall Eure Zeile wieder entfernen und prüfen ob es jetzt wieder geht.
+
+xref:../../index.adoc#content[Zurück zur Übersicht].
