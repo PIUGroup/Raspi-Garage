@@ -150,7 +150,6 @@ sudo mkdir /mnt/usb
 ----
 
 Nun wollen wir die Platte noch automatisch mounten lassen. Dazu fügen wir einen Eintrag in die `fstab` ein:
-Zum Editieren:
 
 [source,bash]
 ----
@@ -158,6 +157,7 @@ sudo nano /etc/fstab
 ----
 
 Diese Zeile aufnehmen (Vorher UUID und FS Type anpassen)
+
 `UUID=806203C46203BDC2 /mnt/usb ntfs uid=pi,gid=pi 0 0`
 
 icon:important[] !!! Kein Reboot mit fehlerhafter Konfiguration !!!
