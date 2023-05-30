@@ -108,3 +108,70 @@ ip l
 wpa_cli status
 ----
 
+== USB - Mobile Festplatten einrichten
+
+(Quelle: https://raspberrytips.com/mount-usb-drive-raspberry-pi/)
+
+Für NTFS Platten installieren wir das Paket `ntfs-3g` - meist ist es aber jetzt schon vorhanden.
+
+[source,bash]
+----
+sudo apt install ntfs-3g
+----
+
+Dann schließen wir die Platte an, um mehr Infos zu bekommen und ermitteln die Infos wie folgt:
+
+[source,bash]
+----
+sudo fdisk -l
+----
+
+Jetzt den Filesystemtype und den Device Namen merken.
+Beispiele:
+
+`/dev/sda1 ntfs`
+
+Dabei ist `/dev/sda1` der Device Name und `ntfs` der Filesystemtyp.
+
+Wir brauchen noch die `uuid` vom Laufwerk, die finden wir so heraus:
+
+[source,bash]
+----
+sudo ls -l /dev/disk/by-uuid
+----
+
+Die UUID merken wir uns für später. Beispiele für UUIDs: `806203c46203BDC2` oder `37E2-62C3`
+
+Jetzt erstellen wir einen Mount Point z.B. `/mnt/usb` Sollen später mehr Platten angeschlossen werden, hängen wir gleich eine Nummer dran z.B. `/mnt/usb0`
+
+[source,bash]
+----
+sudo mkdir /mnt/usb
+----
+
+Nun wollen wir die Platte noch automatisch mounten lassen. Dazu fügen wir einen Eintrag in die `fstab` ein:
+Zum Editieren:
+
+[source,bash]
+----
+sudo nano /etc/fstab
+----
+
+Diese Zeile aufnehmen (Vorher UUID und FS Type anpassen)
+`UUID=806203C46203BDC2 /mnt/usb ntfs uid=pi,gid=pi 0 0`
+
+icon:important[] !!! Kein Reboot mit fehlerhafter Konfiguration !!!
+
+Jetzt prüfen wir die Konfiguration
+
+[source,bash]
+----
+sudo mount -a
+----
+
+Solange Fehler kommen, bitte  keinen Reboot durchführen. Es kann sonst passieren oder es wird höchstwahrscheinlich passieren,
+dass `/` und `/boot` nicht gemountet werden können und das System nicht mehr hochfährt.
+Dann geht es für Euch zurück auf Anfang! Oder ihr kennt wen der sich auskennt.
+Auf jeden Fall wird es schwierig wenn das automatische mounten kaputt ist.
+
+Im Notfall Eure Zeile wieder entfernen und prüfen ob es jetzt wieder geht.
