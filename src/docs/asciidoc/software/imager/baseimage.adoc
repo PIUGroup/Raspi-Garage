@@ -16,7 +16,7 @@ image:./imager-page1.png[title=Einstellungen Page1]
 image:./imager-page2.png[title=Einstellungen Page2]
 image:./imager-page3.png[title=Einstellungen Page3]
 
-Die Einträge sind natürlich nur Beispiele. Da der Nutzer früher Standard war, habe ich ihn als Beispiel eingetragen.
+Die Einträge sind natürlich nur Beispiele. Da der Nutzer **pi** früher Standard war, habe ich ihn als Beispiel eingetragen.
 Für die Sicherheit wäre es allerdings besser einen anderen Namen zu nutzen. Falls Ihr doch pi als Account wählt, wird
 Euch das System darauf hinweisen, dass es ungeschickt ist den Default Nutzer pi zu verwenden.
 
