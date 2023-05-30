@@ -455,6 +455,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#wlan-einrichten">WLAN einrichten</a></li>
+<li><a href="#usb-mobile-festplatten-einrichten">USB - Mobile Festplatten einrichten</a></li>
 </ul>
 </div>
 </div>
@@ -604,6 +605,92 @@ priority=1
 <pre class="highlight"><code class="language-bash" data-lang="bash">ip l
 wpa_cli status</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usb-mobile-festplatten-einrichten"><a class="anchor" href="#usb-mobile-festplatten-einrichten"></a>USB - Mobile Festplatten einrichten</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>(Quelle: <a href="https://raspberrytips.com/mount-usb-drive-raspberry-pi/" class="bare">https://raspberrytips.com/mount-usb-drive-raspberry-pi/</a>)</p>
+</div>
+<div class="paragraph">
+<p>Für NTFS Platten installieren wir das Paket <code>ntfs-3g</code> - meist ist es aber jetzt schon vorhanden.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo apt install ntfs-3g</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Dann schließen wir die Platte an, um mehr Infos zu bekommen und ermitteln die Infos wie folgt:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo fdisk -l</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Jetzt den Filesystemtype und den Device Namen merken.
+Beispiele:</p>
+</div>
+<div class="paragraph">
+<p><code>/dev/sda1 ntfs</code></p>
+</div>
+<div class="paragraph">
+<p>Dabei ist <code>/dev/sda1</code> der Device Name und <code>ntfs</code> der Filesystemtyp.</p>
+</div>
+<div class="paragraph">
+<p>Wir brauchen noch die <code>uuid</code> vom Laufwerk, die finden wir so heraus:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo ls -l /dev/disk/by-uuid</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Die UUID merken wir uns für später. Beispiele für UUIDs: <code>806203c46203BDC2</code> oder <code>37E2-62C3</code></p>
+</div>
+<div class="paragraph">
+<p>Jetzt erstellen wir einen Mount Point z.B. <code>/mnt/usb</code> Sollen später mehr Platten angeschlossen werden, hängen wir gleich eine Nummer dran z.B. <code>/mnt/usb0</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo mkdir /mnt/usb</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Nun wollen wir die Platte noch automatisch mounten lassen. Dazu fügen wir einen Eintrag in die <code>fstab</code> ein:
+Zum Editieren:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo nano /etc/fstab</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Diese Zeile aufnehmen (Vorher UUID und FS Type anpassen)
+<code>UUID=806203C46203BDC2 /mnt/usb ntfs uid=pi,gid=pi 0 0</code></p>
+</div>
+<div class="paragraph">
+<p><span class="icon"><i class="fa fa-important"></i></span> !!! Kein Reboot mit fehlerhafter Konfiguration !!!</p>
+</div>
+<div class="paragraph">
+<p>Jetzt prüfen wir die Konfiguration</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo mount -a</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Solange Fehler kommen, bitte  keinen Reboot durchführen. Es kann sonst passieren oder es wird höchstwahrscheinlich passieren,
+dass <code>/</code> und <code>/boot</code> nicht gemountet werden können und das System nicht mehr hochfährt.
+Dann geht es für Euch zurück auf Anfang! Oder ihr kennt wen der sich auskennt.
+Auf jeden Fall wird es schwierig wenn das automatische mounten kaputt ist.</p>
+</div>
+<div class="paragraph">
+<p>Im Notfall Eure Zeile wieder entfernen und prüfen ob es jetzt wieder geht.</p>
 </div>
 </div>
 </div>
