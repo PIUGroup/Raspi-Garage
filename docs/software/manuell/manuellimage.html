@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.16">
-<title>Softwareübersicht</title>
+<title>Download Quellen</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -443,29 +443,166 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#softwareübersicht">Softwareübersicht</a>
+<li><a href="#download-quellen">Download Quellen</a></li>
+<li><a href="#aufspielen-eines-images">Aufspielen eines Images</a></li>
+<li><a href="#ssh-aktivieren">SSH aktivieren</a></li>
+<li><a href="#nachkonfiguration-auf-dem-pi">Nachkonfiguration auf dem PI</a>
 <ul class="sectlevel2">
-<li><a href="#imager">Imager</a></li>
+<li><a href="#immer-zu-beginn">Immer zu Beginn</a></li>
+<li><a href="#restart">Restart</a></li>
+<li><a href="#halt">Halt</a></li>
+<li><a href="#allgemeine-konfiguration-ändern">Allgemeine Konfiguration ändern</a></li>
 </ul>
 </li>
+<li><a href="#wlan-einrichten">WLAN einrichten</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="softwareübersicht"><a class="anchor" href="#softwareübersicht"></a>Softwareübersicht</h2>
+<h2 id="download-quellen"><a class="anchor" href="#download-quellen"></a>Download Quellen</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ein Download des Images ist beispielsweise hier
+möglich: <a href="https://www.raspberrypi.com/software/operating-systems/">Images von raspberrypi.com</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="aufspielen-eines-images"><a class="anchor" href="#aufspielen-eines-images"></a>Aufspielen eines Images</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ohne Imager nutzt man zum Aufspielen eines Images auf die SD Karte  üblicherweise den Linuxbefehl <code>dd</code>.
+Unter Linux sollte das kein Problem sein :) beim Mac kenne ich mich nicht aus aber da er auf Linux basiert
+sollte es da auch irgendwo ein dd geben und unter Windows installiert ihr die gitbash,
+die hat ein dd im Bauch. Der Befehl lautet dann:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo dd if=/pfad/von/image.img of=/pfad/zur/sdcard bs=4M</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Die Pfade müsst ihr gemäß Euren verwendeten Pfaden natürlich anpassen.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">if</dt>
+<dd>
+<p>steht für input Pfad, also der Weg zur Image</p>
+</dd>
+<dt class="hdlist1">of</dt>
+<dd>
+<p>steht für output Pfad, also der Weg zur SD Karte (Korrekten Mount Path beachten!).</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ssh-aktivieren"><a class="anchor" href="#ssh-aktivieren"></a>SSH aktivieren</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Um SSH in einem Image von Anfang an zu aktivieren, muss man <strong>vor dem ersten Booten des Images</strong>
+unter dem Folder <code>/boot/</code> eine leer Date mit Namen <code>ssh</code> anlegen.
+Dies kann man über das Kommando <code>touch</code> erledigen:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo touch /pathToSDCard/boot/ssh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wichtig unter Windows: Darauf achten, dass nicht .txt oder eine andere Endung dran pappt.
+Gitbash oder Total Commander sind Euer Freund.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="nachkonfiguration-auf-dem-pi"><a class="anchor" href="#nachkonfiguration-auf-dem-pi"></a>Nachkonfiguration auf dem PI</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="imager"><a class="anchor" href="#imager"></a>Imager</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="software/imager/baseimage.html">Grundimage aufspielen</a></p>
-</li>
-<li>
-<p><a href="software/imager/manuell/manuellimage.html">Manuell Images Aufspielen und Einrichten</a></p>
-</li>
-</ul>
+<h3 id="immer-zu-beginn"><a class="anchor" href="#immer-zu-beginn"></a>Immer zu Beginn</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo apt update
+sudo apt upgrade</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="restart"><a class="anchor" href="#restart"></a>Restart</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo shutdown -r now</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="halt"><a class="anchor" href="#halt"></a>Halt</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo shutdown now</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="allgemeine-konfiguration-ändern"><a class="anchor" href="#allgemeine-konfiguration-ändern"></a>Allgemeine Konfiguration ändern</h3>
+<div class="paragraph">
+<p>Dieses Skript führt die allgemeine Konfiguration auf dem Pi aus. Hier werden sowas wie Sprache, Zeitzone,
+Tastaturlayout etc. festgelegt:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">/usr/bin/raspi-config</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="wlan-einrichten"><a class="anchor" href="#wlan-einrichten"></a>WLAN einrichten</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>(Quelle: <a href="https://www.elektronik-kompendium.de/sites/raspberry-pi/1912221.htm" class="bare">https://www.elektronik-kompendium.de/sites/raspberry-pi/1912221.htm</a>)
+Die Eintragungen für das WLAN erfolgen in der Datei wpa_supplicant.conf während der Pi per Netzwerkkabel mit einem PC
+verbunden und gestartet ist:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Die wpa_supplicant.conf kann beispielsweise für Freifunk Franken so angepasst werden:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=DE
+network={
+ssid=”franken.freifunk.net”
+key_mgmt=NONE
+priority=1
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Anschließend kann die Konfiguration ausprobiert werden:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo wpa_supplicant -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>oder über:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">ip l
+wpa_cli status</code></pre>
 </div>
 </div>
 </div>
