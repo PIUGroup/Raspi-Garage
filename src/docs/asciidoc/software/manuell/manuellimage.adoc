@@ -1,10 +1,12 @@
-== Download Quellen
+[reftext="Download Quellen"]
+== Download Images
 
 Ein Download des Images ist beispielsweise hier
 möglich: https://www.raspberrypi.com/software/operating-systems/[Images von raspberrypi.com]
 
 xref:../../index.adoc#content[Zurück zur Übersicht].
 
+[reftext="Image aufspielen"]
 == Aufspielen eines Images
 
 Ohne Imager nutzt man zum Aufspielen eines Images auf die SD Karte  üblicherweise den Linuxbefehl `dd`.
@@ -25,6 +27,7 @@ of:: steht für output Pfad, also der Weg zur SD Karte (Korrekten Mount Path bea
 
 xref:../../index.adoc#content[Zurück zur Übersicht].
 
+[reftext="SSH aktivieren"]
 == SSH aktivieren
 Um SSH in einem Image von Anfang an zu aktivieren, muss man **vor dem ersten Booten des Images**
 unter dem Folder `/boot/` eine leer Date mit Namen `ssh` anlegen.
@@ -41,6 +44,7 @@ Gitbash oder Total Commander sind Euer Freund.
 
 xref:../../index.adoc#content[Zurück zur Übersicht].
 
+[reftext="Nachkonfiguration"]
 == Nachkonfiguration auf dem PI
 
 === Immer zu Beginn
@@ -78,6 +82,7 @@ Tastaturlayout etc. festgelegt:
 
 xref:../../index.adoc#content[Zurück zur Übersicht].
 
+[reftext="WLAN einrichten"]
 == WLAN einrichten
 
 (Quelle: https://www.elektronik-kompendium.de/sites/raspberry-pi/1912221.htm)
@@ -120,6 +125,7 @@ wpa_cli status
 
 xref:../../index.adoc#content[Zurück zur Übersicht].
 
+[reftext="Festplatten mounten"]
 == USB - Mobile Festplatten einrichten
 
 (Quelle: https://raspberrytips.com/mount-usb-drive-raspberry-pi/)
