@@ -2,6 +2,10 @@
 name: Deploy GH-Pages
 
 on:
+  workflow_run:
+    workflows: [ "Site Creation" ]
+    types:
+      - completed
   workflow_call:
   workflow_dispatch:
 
