@@ -1,5 +1,5 @@
-[reftext="Download Quellen"]
-== Download Images
+[reftext="Download Images"]
+== Download Quellen
 
 Ein Download des Images ist beispielsweise hier
 möglich: https://www.raspberrypi.com/software/operating-systems/[Images von raspberrypi.com]
