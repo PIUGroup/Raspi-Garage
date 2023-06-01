@@ -5,3 +5,6 @@
 * xref:software/imager/baseimage.adoc[Grundimage aufspielen]
 * xref:software/manuell/manuellimage.adoc#Download_Images[Image Download]
 * xref:software/manuell/manuellimage.adoc#Image_aufspielen[Manuell Images Aufspielen und Einrichten]
+* xref:software/manuell/manuellimage.adoc#SSH_aktivieren[SSH aktivieren]
+* xref:software/manuell/manuellimage.adoc#Nachkonfiguration[PI nachkonfigurieren]
+* xref:software/manuell/manuellimage.adoc#WLAN_einrichten[WLAN einrichten]
