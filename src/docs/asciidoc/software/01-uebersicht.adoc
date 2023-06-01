@@ -9,6 +9,6 @@
 * xref:software/manuell/manuellimage.adoc#download-quellen[Image Download]
 * xref:software/manuell/manuellimage.adoc#aufspielen-eines-images[Manuell Images Aufspielen und Einrichten]
 * xref:software/manuell/manuellimage.adoc#ssh-aktivieren[SSH aktivieren]
-* xref:software/manuell/manuellimage.adoc#nachkonfiguration-auf-dem-pi[Nachkonfiguration]
+* xref:software/manuell/manuellimage.adoc#nachkonfiguration-auf-dem-pi[Nachkonfiguration des PI]
 * xref:software/manuell/manuellimage.adoc#wlan-einrichten[WLAN einrichten]
 * xref:software/manuell/manuellimage.adoc#usb-mobile-festplatten-einrichten[Festplatten mounten]
