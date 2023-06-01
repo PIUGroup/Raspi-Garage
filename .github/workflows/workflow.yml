@@ -8,6 +8,6 @@ jobs:
   call-workflow-1-in-local-repo:
     uses: huluvu424242/raspi-garage/.github/workflows/build.yml@${GITHUB_REF_NAME}
   call-workflow-2-in-local-repo:
-    uses: ./.github/workflows/generate-docs.yml@${GITHUB_REF_NAME}
+    uses: huluvu424242/raspi-garage/.github/workflows/generate-docs.yml@${GITHUB_REF_NAME}
   call-workflow-in-another-repo:
-    uses: ./.github/workflows/generate-ghpages.yml@${GITHUB_REF_NAME}
+    uses: huluvu424242/raspi-garage/.github/workflows/generate-ghpages.yml@${GITHUB_REF_NAME}
