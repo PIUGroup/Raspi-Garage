@@ -241,9 +241,29 @@ xref:../../index.adoc#content[Zurück zur Übersicht].
 (Quelle: https://pimylifeup.com/upgrade-raspbian-stretch-to-raspbian-buster/)
 
 === OS Version ermitteln
+
 [source,bash]
 ----
 cat /etc/os-release
+----
+
+Hier sieht man, welches die nächste Version ist auf die Upgraded wird:
+https://en.wikipedia.org/wiki/Raspberry_Pi_OS
+
+
+=== Pakete aktualisieren
+
+[source,bash]
+----
+sudo apt update
+sudo apt dist-upgrade -y
+----
+
+=== Firmware des Pi aktualisieren
+
+[source,bash]
+----
+sudo rpi-update
 ----
 
 
