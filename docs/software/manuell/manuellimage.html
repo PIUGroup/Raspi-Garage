@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.16">
-<title>Hardwareübersicht</title>
+<title>Download Quellen</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -443,9 +443,33 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#hardwareübersicht">Hardwareübersicht</a>
+<li><a href="#download-quellen">Download Quellen</a></li>
+<li><a href="#aufspielen-eines-images">Aufspielen eines Images</a></li>
+<li><a href="#ssh-aktivieren">SSH aktivieren</a></li>
+<li><a href="#os-version-ermitteln">OS Version ermitteln</a></li>
+<li><a href="#remote-backup-vom-pi-als-image-ziehen">Remote Backup vom Pi als Image ziehen</a></li>
+<li><a href="#pi-image-verkleinern">Pi Image verkleinern</a></li>
+<li><a href="#nachkonfiguration-auf-dem-pi">Nachkonfiguration auf dem PI</a>
 <ul class="sectlevel2">
-<li><a href="#raspberry-pi-4-modell-b">Raspberry Pi 4 Modell B</a></li>
+<li><a href="#immer-zu-beginn">Immer zu Beginn</a></li>
+<li><a href="#restart">Restart</a></li>
+<li><a href="#halt">Halt</a></li>
+<li><a href="#apt-lock-entfernen">APT Lock entfernen</a></li>
+<li><a href="#allgemeine-konfiguration-ändern">Allgemeine Konfiguration ändern</a></li>
+</ul>
+</li>
+<li><a href="#wlan-einrichten">WLAN einrichten</a></li>
+<li><a href="#usb-mobile-festplatten-einrichten">USB - Mobile Festplatten einrichten</a></li>
+<li><a href="#os-upgrade-stretch-auf-buster">OS Upgrade (Stretch auf Buster)</a>
+<ul class="sectlevel2">
+<li><a href="#os-version-ermitteln-2">OS Version ermitteln</a></li>
+<li><a href="#pakete-aktualisieren">Pakete aktualisieren</a></li>
+<li><a href="#firmware-des-pi-aktualisieren">Firmware des Pi aktualisieren</a></li>
+<li><a href="#quellen-aktualisieren">Quellen aktualisieren</a></li>
+<li><a href="#apt-list-changes-löschen">APT List Changes löschen</a></li>
+<li><a href="#aktualisieren-der-neuen-distribution">Aktualisieren der neuen Distribution</a></li>
+<li><a href="#unsupportete-pakete-löschen">Unsupportete Pakete löschen</a></li>
+<li><a href="#installation-aufräumen">Installation aufräumen</a></li>
 </ul>
 </li>
 </ul>
@@ -453,19 +477,472 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="hardwareübersicht"><a class="anchor" href="#hardwareübersicht"></a>Hardwareübersicht</h2>
+<h2 id="download-quellen"><a class="anchor" href="#download-quellen"></a>Download Quellen</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ein Download des Images ist beispielsweise hier
+möglich: <a href="https://www.raspberrypi.com/software/operating-systems/">Images von raspberrypi.com</a></p>
+</div>
+<div class="paragraph">
+<p><a href="../../index.html#content">Zurück zur Übersicht</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="aufspielen-eines-images"><a class="anchor" href="#aufspielen-eines-images"></a>Aufspielen eines Images</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ohne Imager nutzt man zum Aufspielen eines Images auf die SD Karte  üblicherweise den Linuxbefehl <code>dd</code>.
+Unter Linux sollte das kein Problem sein :) beim Mac kenne ich mich nicht aus aber da er auf Linux basiert
+sollte es da auch irgendwo ein dd geben und unter Windows installiert ihr die gitbash,
+die hat ein dd im Bauch. Der Befehl lautet dann:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo dd if=/pfad/von/image.img of=/pfad/zur/sdcard bs=4M</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Die Pfade müsst ihr gemäß Euren verwendeten Pfaden natürlich anpassen.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">if</dt>
+<dd>
+<p>steht für input Pfad, also der Weg zur Image</p>
+</dd>
+<dt class="hdlist1">of</dt>
+<dd>
+<p>steht für output Pfad, also der Weg zur SD Karte (Korrekten Mount Path beachten!).</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><a href="../../index.html#content">Zurück zur Übersicht</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ssh-aktivieren"><a class="anchor" href="#ssh-aktivieren"></a>SSH aktivieren</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Um SSH in einem Image von Anfang an zu aktivieren, muss man <strong>vor dem ersten Booten des Images</strong>
+unter dem Folder <code>/boot/</code> eine leer Date mit Namen <code>ssh</code> anlegen.
+Dies kann man über das Kommando <code>touch</code> erledigen:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo touch /pathToSDCard/boot/ssh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wichtig unter Windows: Darauf achten, dass nicht .txt oder eine andere Endung dran pappt.
+Gitbash oder Total Commander sind Euer Freund.</p>
+</div>
+<div class="paragraph">
+<p><a href="../../index.html#content">Zurück zur Übersicht</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="os-version-ermitteln"><a class="anchor" href="#os-version-ermitteln"></a>OS Version ermitteln</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">cat /etc/os-release</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="remote-backup-vom-pi-als-image-ziehen"><a class="anchor" href="#remote-backup-vom-pi-als-image-ziehen"></a>Remote Backup vom Pi als Image ziehen</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>(Quelle: <a href="https://pixelfriedhof.com/en/remote-backup-your-raspberry-pi-with-ssh-via-terminal/" class="bare">https://pixelfriedhof.com/en/remote-backup-your-raspberry-pi-with-ssh-via-terminal/</a>)</p>
+</div>
+<div class="paragraph">
+<p>Den aktuellen Zustand des Pi kann man remote per ssh als Image ziehen. Dazu wieder eine Bash öffnen,
+unter Windows zum Beispiel die gitbash.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"> ssh pi@192.168.20.22 "sudo dd if=/dev/mmcblk0 bs=1M | gzip -" | dd of=~/Desktop/backup20230906.gz</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Der Restore eines Images auf den Pi geht nicht remote. Daher muss der Pi heruntergefahren werden, die
+SD Karte entnommen und das Image separat auf die SD Karte übertragen werden.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="pi-image-verkleinern"><a class="anchor" href="#pi-image-verkleinern"></a>Pi Image verkleinern</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>(Quelle: <a href="https://techgeeks.de/raspberry-pi-image-installieren-backup-und-verkleinern/" class="bare">https://techgeeks.de/raspberry-pi-image-installieren-backup-und-verkleinern/</a> )</p>
+</div>
+<div class="paragraph">
+<p>Beim Verkleinern soll keine Information verloren gehen. Es dient nur der Platzverringerung für die Lagerung der Images.
+Wenn ein Image auf dem Pi aufgespielt wurde und der Pi läuft, kann das Image jederzeit wieder über die
+Einstellung "Expand Filesystem" im folgenden Konfigurationsprogramm <code>sudo rpi-config</code> auf das Maximum der SD Karte
+vergrößert werden.</p>
+</div>
+<div class="paragraph">
+<p>Zur Verkleinerung einer abgelegten Imagedatei</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"> wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="nachkonfiguration-auf-dem-pi"><a class="anchor" href="#nachkonfiguration-auf-dem-pi"></a>Nachkonfiguration auf dem PI</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="raspberry-pi-4-modell-b"><a class="anchor" href="#raspberry-pi-4-modell-b"></a>Raspberry Pi 4 Modell B</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="hardware/raspi4b/raspi4-aufbau.html">Aufbau</a></p>
-</li>
-<li>
-<p><a href="hardware/raspi4b/01-montageanleitung.html">Montageanleitung</a></p>
-</li>
-</ul>
+<h3 id="immer-zu-beginn"><a class="anchor" href="#immer-zu-beginn"></a>Immer zu Beginn</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo apt update
+sudo apt upgrade</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="restart"><a class="anchor" href="#restart"></a>Restart</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo shutdown -r now</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="halt"><a class="anchor" href="#halt"></a>Halt</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo shutdown now</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="../../index.html#content">Zurück zur Übersicht</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="apt-lock-entfernen"><a class="anchor" href="#apt-lock-entfernen"></a>APT Lock entfernen</h3>
+<div class="paragraph">
+<p>Falls die Remote ssh Verbindung während der Installation abbricht muss man das Lock entfernen und neu aufsetzen.
+Es sind genau 2 Lock Dateien zu löschen</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo rm /var/cache/apt/archives/lock</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Anschließend muss die Installation neu aufgesetzt werden mit:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo dpkg --configure -a</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="allgemeine-konfiguration-ändern"><a class="anchor" href="#allgemeine-konfiguration-ändern"></a>Allgemeine Konfiguration ändern</h3>
+<div class="paragraph">
+<p>Dieses Skript führt die allgemeine Konfiguration auf dem Pi aus. Hier werden sowas wie Sprache, Zeitzone,
+Tastaturlayout etc. festgelegt:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">/usr/bin/raspi-config</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="../../index.html#content">Zurück zur Übersicht</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="wlan-einrichten"><a class="anchor" href="#wlan-einrichten"></a>WLAN einrichten</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>(Quelle: <a href="https://www.elektronik-kompendium.de/sites/raspberry-pi/1912221.htm" class="bare">https://www.elektronik-kompendium.de/sites/raspberry-pi/1912221.htm</a>)
+Die Eintragungen für das WLAN erfolgen in der Datei wpa_supplicant.conf während der Pi per Netzwerkkabel mit einem PC
+verbunden und gestartet ist:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Die wpa_supplicant.conf kann beispielsweise für Freifunk Franken so angepasst werden:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=DE
+network={
+ssid=”franken.freifunk.net”
+key_mgmt=NONE
+priority=1
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Anschließend kann die Konfiguration ausprobiert werden:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo wpa_supplicant -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>oder über:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">ip l
+wpa_cli status</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="../../index.html#content">Zurück zur Übersicht</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usb-mobile-festplatten-einrichten"><a class="anchor" href="#usb-mobile-festplatten-einrichten"></a>USB - Mobile Festplatten einrichten</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>(Quelle: <a href="https://raspberrytips.com/mount-usb-drive-raspberry-pi/" class="bare">https://raspberrytips.com/mount-usb-drive-raspberry-pi/</a>)</p>
+</div>
+<div class="paragraph">
+<p>Für NTFS Platten installieren wir das Paket <code>ntfs-3g</code> - meist ist es aber jetzt schon vorhanden.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo apt install ntfs-3g</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Dann schließen wir die Platte an, um mehr Infos zu bekommen und ermitteln die Infos wie folgt:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo fdisk -l</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Jetzt den Filesystemtype und den Device Namen merken.
+Beispiele:</p>
+</div>
+<div class="paragraph">
+<p><code>/dev/sda1 ntfs</code></p>
+</div>
+<div class="paragraph">
+<p>Dabei ist <code>/dev/sda1</code> der Device Name und <code>ntfs</code> der Filesystemtyp.</p>
+</div>
+<div class="paragraph">
+<p>Wir brauchen noch die <code>uuid</code> vom Laufwerk, die finden wir so heraus:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo ls -l /dev/disk/by-uuid</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Die UUID merken wir uns für später. Beispiele für UUIDs: <code>806203c46203BDC2</code> oder <code>37E2-62C3</code></p>
+</div>
+<div class="paragraph">
+<p>Jetzt erstellen wir einen Mount Point z.B. <code>/mnt/usb</code> Sollen später mehr Platten angeschlossen werden, hängen wir gleich eine Nummer dran z.B. <code>/mnt/usb0</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo mkdir /mnt/usb</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Nun wollen wir die Platte noch automatisch mounten lassen. Dazu fügen wir einen Eintrag in die <code>fstab</code> ein:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo nano /etc/fstab</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Diese Zeile aufnehmen (Vorher UUID und FS Type anpassen)</p>
+</div>
+<div class="paragraph">
+<p><code>UUID=806203C46203BDC2 /mnt/usb ntfs uid=pi,gid=pi 0 0</code></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+!!! Kein Reboot mit fehlerhafter Konfiguration !!!
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Jetzt prüfen wir die Konfiguration</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo mount -a</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Solange Fehler kommen, bitte  keinen Reboot durchführen. Es kann sonst passieren oder es wird höchstwahrscheinlich passieren,
+dass <code>/</code> und <code>/boot</code> nicht gemountet werden können und das System nicht mehr hochfährt.
+Dann geht es für Euch zurück auf Anfang! Oder ihr kennt wen der sich auskennt.
+Auf jeden Fall wird es schwierig wenn das automatische mounten kaputt ist.</p>
+</div>
+<div class="paragraph">
+<p>Im Notfall Eure Zeile wieder entfernen und prüfen ob es jetzt wieder geht.</p>
+</div>
+<div class="paragraph">
+<p><a href="../../index.html#content">Zurück zur Übersicht</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="os-upgrade-stretch-auf-buster"><a class="anchor" href="#os-upgrade-stretch-auf-buster"></a>OS Upgrade (Stretch auf Buster)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>(Quelle: <a href="https://pimylifeup.com/upgrade-raspbian-stretch-to-raspbian-buster/" class="bare">https://pimylifeup.com/upgrade-raspbian-stretch-to-raspbian-buster/</a>)</p>
+</div>
+<div class="sect2">
+<h3 id="os-version-ermitteln-2"><a class="anchor" href="#os-version-ermitteln-2"></a>OS Version ermitteln</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">cat /etc/os-release</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hier sieht man, welches die nächste Version ist auf die Upgraded wird:
+<a href="https://en.wikipedia.org/wiki/Raspberry_Pi_OS" class="bare">https://en.wikipedia.org/wiki/Raspberry_Pi_OS</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pakete-aktualisieren"><a class="anchor" href="#pakete-aktualisieren"></a>Pakete aktualisieren</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo apt update
+sudo apt dist-upgrade -y</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="firmware-des-pi-aktualisieren"><a class="anchor" href="#firmware-des-pi-aktualisieren"></a>Firmware des Pi aktualisieren</h3>
+<div class="paragraph">
+<p>Dieser Schritt sollte nur bei Bedarf erfolgen (von 9 auf 10 besteht scheinbar Bedarf).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo rpi-update</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="quellen-aktualisieren"><a class="anchor" href="#quellen-aktualisieren"></a>Quellen aktualisieren</h3>
+<div class="paragraph">
+<p>Jetzt stellen wir die Quellen auf die neuen Repositories der neuen Distribution ein.
+Bei uns stellen wir also Stretch auf Buster in den Quellen um.
+Später analog halt auf den Namen der neuen Distribution.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo nano /etc/apt/sources.list</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wir ersetzen in der Zeile <strong>stretch</strong> durch <strong>buster</strong> und speichern und verlassen die Datei.</p>
+</div>
+<div class="paragraph">
+<p>Jetzt wiederholen wir den Schritt für eine weitere Quellenangabe</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo nano /etc/apt/sources.list.d/raspi.list</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wieder ersetzen wir in der Datei die aktuelle Distribution durch die nachfolgenden Distribution, speichern ab
+und schließen den Editor.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="apt-list-changes-löschen"><a class="anchor" href="#apt-list-changes-löschen"></a>APT List Changes löschen</h3>
+<div class="paragraph">
+<p>Vor dem finalen Upgrade löschen wir noch die ListChanges.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo apt-get remove apt-listchanges</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="aktualisieren-der-neuen-distribution"><a class="anchor" href="#aktualisieren-der-neuen-distribution"></a>Aktualisieren der neuen Distribution</h3>
+<div class="paragraph">
+<p>Jetzt aktualisieren wir die Distribution aus den neuen Quellen. Es ist damit zu rechnen, dass sehr viele
+interaktive Abfragen kommen. Also nicht weglaufen sondern dabei bleiben.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo apt update
+sudo apt dist-upgrade</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="unsupportete-pakete-löschen"><a class="anchor" href="#unsupportete-pakete-löschen"></a>Unsupportete Pakete löschen</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo apt purge timidity lxmusic gnome-disk-utility deluge-gtk evince wicd wicd-gtk clipit usermode gucharmap gnome-system-tools pavucontrol</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="installation-aufräumen"><a class="anchor" href="#installation-aufräumen"></a>Installation aufräumen</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo apt autoremove -y</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wenn erfolgreich dann noch das target autoclean des Paketmanagers aufrufen.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo apt autoclean</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Und zum Abschluss neu starten mit:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo reboot</code></pre>
+</div>
 </div>
 </div>
 </div>

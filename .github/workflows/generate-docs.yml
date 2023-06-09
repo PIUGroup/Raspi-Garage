@@ -1,11 +1,8 @@
 name: Site Creation
 
 on:
-  workflow_run:
-    workflows: [ "CI Build" ]
-    types:
-      - completed
-  workflow_dispatch: {}
+  workflow_call:
+  workflow_dispatch:
 
 jobs:
   deploy:
