@@ -44,6 +44,13 @@ Gitbash oder Total Commander sind Euer Freund.
 
 xref:../../index.adoc#content[Zurück zur Übersicht].
 
+== OS Version ermitteln
+[source,bash]
+----
+cat /etc/os-release
+----
+
+
 [reftext="Nachkonfiguration"]
 == Nachkonfiguration auf dem PI
 
@@ -67,13 +74,6 @@ sudo shutdown -r now
 ----
 sudo shutdown now
 ----
-
-=== OS Version ermitteln
-[source,bash]
-----
-cat /etc/os-release
-----
-
 
 xref:../../index.adoc#content[Zurück zur Übersicht].
 
@@ -202,3 +202,15 @@ Auf jeden Fall wird es schwierig wenn das automatische mounten kaputt ist.
 Im Notfall Eure Zeile wieder entfernen und prüfen ob es jetzt wieder geht.
 
 xref:../../index.adoc#content[Zurück zur Übersicht].
+
+== OS Upgrade (Stretch auf Buster)
+
+(Quelle: https://pimylifeup.com/upgrade-raspbian-stretch-to-raspbian-buster/)
+
+=== OS Version ermitteln
+[source,bash]
+----
+cat /etc/os-release
+----
+
+
