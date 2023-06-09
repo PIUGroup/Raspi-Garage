@@ -454,6 +454,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#immer-zu-beginn">Immer zu Beginn</a></li>
 <li><a href="#restart">Restart</a></li>
 <li><a href="#halt">Halt</a></li>
+<li><a href="#os-version-ermitteln-2">OS Version ermitteln</a></li>
 <li><a href="#apt-lock-entfernen">APT Lock entfernen</a></li>
 <li><a href="#allgemeine-konfiguration-ändern">Allgemeine Konfiguration ändern</a></li>
 </ul>
@@ -462,7 +463,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#usb-mobile-festplatten-einrichten">USB - Mobile Festplatten einrichten</a></li>
 <li><a href="#os-upgrade-stretch-auf-buster">OS Upgrade (Stretch auf Buster)</a>
 <ul class="sectlevel2">
-<li><a href="#os-version-ermitteln-2">OS Version ermitteln</a></li>
+<li><a href="#os-version-ermitteln-3">OS Version ermitteln</a></li>
 <li><a href="#pakete-aktualisieren">Pakete aktualisieren</a></li>
 <li><a href="#firmware-des-pi-aktualisieren">Firmware des Pi aktualisieren</a></li>
 <li><a href="#quellen-aktualisieren">Quellen aktualisieren</a></li>
@@ -631,6 +632,14 @@ sudo apt upgrade</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">sudo shutdown now</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="os-version-ermitteln-2"><a class="anchor" href="#os-version-ermitteln-2"></a>OS Version ermitteln</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">cat /etc/os-release</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -830,7 +839,7 @@ Auf jeden Fall wird es schwierig wenn das automatische mounten kaputt ist.</p>
 <p>(Quelle: <a href="https://pimylifeup.com/upgrade-raspbian-stretch-to-raspbian-buster/" class="bare">https://pimylifeup.com/upgrade-raspbian-stretch-to-raspbian-buster/</a>)</p>
 </div>
 <div class="sect2">
-<h3 id="os-version-ermitteln-2"><a class="anchor" href="#os-version-ermitteln-2"></a>OS Version ermitteln</h3>
+<h3 id="os-version-ermitteln-3"><a class="anchor" href="#os-version-ermitteln-3"></a>OS Version ermitteln</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">cat /etc/os-release</code></pre>
