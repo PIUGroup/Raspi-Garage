@@ -108,6 +108,13 @@ sudo shutdown -r now
 sudo shutdown now
 ----
 
+=== OS Version ermitteln
+[source,bash]
+----
+cat /etc/os-release
+----
+
+
 xref:../../index.adoc#content[Zurück zur Übersicht].
 
 === APT Lock entfernen
