@@ -447,11 +447,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#aufspielen-eines-images">Aufspielen eines Images</a></li>
 <li><a href="#ssh-aktivieren">SSH aktivieren</a></li>
 <li><a href="#os-version-ermitteln">OS Version ermitteln</a></li>
+<li><a href="#remote-backup-vom-pi-als-image-ziehen">Remote Backup vom Pi als Image ziehen</a></li>
+<li><a href="#pi-image-verkleinern">Pi Image verkleinern</a></li>
 <li><a href="#nachkonfiguration-auf-dem-pi">Nachkonfiguration auf dem PI</a>
 <ul class="sectlevel2">
 <li><a href="#immer-zu-beginn">Immer zu Beginn</a></li>
 <li><a href="#restart">Restart</a></li>
 <li><a href="#halt">Halt</a></li>
+<li><a href="#apt-lock-entfernen">APT Lock entfernen</a></li>
 <li><a href="#allgemeine-konfiguration-ändern">Allgemeine Konfiguration ändern</a></li>
 </ul>
 </li>
@@ -460,6 +463,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#os-upgrade-stretch-auf-buster">OS Upgrade (Stretch auf Buster)</a>
 <ul class="sectlevel2">
 <li><a href="#os-version-ermitteln-2">OS Version ermitteln</a></li>
+<li><a href="#pakete-aktualisieren">Pakete aktualisieren</a></li>
+<li><a href="#firmware-des-pi-aktualisieren">Firmware des Pi aktualisieren</a></li>
+<li><a href="#quellen-aktualisieren">Quellen aktualisieren</a></li>
+<li><a href="#apt-list-changes-löschen">APT List Changes löschen</a></li>
+<li><a href="#aktualisieren-der-neuen-distribution">Aktualisieren der neuen Distribution</a></li>
+<li><a href="#unsupportete-pakete-löschen">Unsupportete Pakete löschen</a></li>
+<li><a href="#installation-aufräumen">Installation aufräumen</a></li>
 </ul>
 </li>
 </ul>
@@ -545,6 +555,58 @@ Gitbash oder Total Commander sind Euer Freund.</p>
 </div>
 </div>
 <div class="sect1">
+<h2 id="remote-backup-vom-pi-als-image-ziehen"><a class="anchor" href="#remote-backup-vom-pi-als-image-ziehen"></a>Remote Backup vom Pi als Image ziehen</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>(Quelle: <a href="https://pixelfriedhof.com/en/remote-backup-your-raspberry-pi-with-ssh-via-terminal/" class="bare">https://pixelfriedhof.com/en/remote-backup-your-raspberry-pi-with-ssh-via-terminal/</a>)</p>
+</div>
+<div class="paragraph">
+<p>Den aktuellen Zustand des Pi kann man remote per ssh als Image ziehen. Dazu wieder eine Bash öffnen,
+unter Windows zum Beispiel die gitbash.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"> ssh pi@192.168.20.22 "sudo dd if=/dev/mmcblk0 bs=1M | gzip -" | dd of=~/Desktop/backup20230906.gz</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Der Restore eines Images auf den Pi geht nicht remote. Daher muss der Pi heruntergefahren werden, die
+SD Karte entnommen und das Image separat auf die SD Karte übertragen werden.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="pi-image-verkleinern"><a class="anchor" href="#pi-image-verkleinern"></a>Pi Image verkleinern</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>(Quelle: <a href="https://techgeeks.de/raspberry-pi-image-installieren-backup-und-verkleinern/" class="bare">https://techgeeks.de/raspberry-pi-image-installieren-backup-und-verkleinern/</a> )</p>
+</div>
+<div class="paragraph">
+<p>Beim Verkleinern soll keine Information verloren gehen. Es dient nur der Platzverringerung für die Lagerung der Images.
+Wenn ein Image auf dem Pi aufgespielt wurde und der Pi läuft, kann das Image jederzeit wieder über die
+Einstellung "Expand Filesystem" im folgenden Konfigurationsprogramm <code>sudo rpi-config</code> auf das Maximum der SD Karte
+vergrößert werden.</p>
+</div>
+<div class="paragraph">
+<p>Zur Verkleinerung einer abgelegten Imagedatei</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"> wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="nachkonfiguration-auf-dem-pi"><a class="anchor" href="#nachkonfiguration-auf-dem-pi"></a>Nachkonfiguration auf dem PI</h2>
 <div class="sectionbody">
 <div class="sect2">
@@ -573,6 +635,26 @@ sudo apt upgrade</code></pre>
 </div>
 <div class="paragraph">
 <p><a href="../../index.html#content">Zurück zur Übersicht</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="apt-lock-entfernen"><a class="anchor" href="#apt-lock-entfernen"></a>APT Lock entfernen</h3>
+<div class="paragraph">
+<p>Falls die Remote ssh Verbindung während der Installation abbricht muss man das Lock entfernen und neu aufsetzen.
+Es sind genau 2 Lock Dateien zu löschen</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo rm /var/cache/apt/archives/lock</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Anschließend muss die Installation neu aufgesetzt werden mit:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo dpkg --configure -a</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -752,6 +834,114 @@ Auf jeden Fall wird es schwierig wenn das automatische mounten kaputt ist.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">cat /etc/os-release</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hier sieht man, welches die nächste Version ist auf die Upgraded wird:
+<a href="https://en.wikipedia.org/wiki/Raspberry_Pi_OS" class="bare">https://en.wikipedia.org/wiki/Raspberry_Pi_OS</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pakete-aktualisieren"><a class="anchor" href="#pakete-aktualisieren"></a>Pakete aktualisieren</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo apt update
+sudo apt dist-upgrade -y</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="firmware-des-pi-aktualisieren"><a class="anchor" href="#firmware-des-pi-aktualisieren"></a>Firmware des Pi aktualisieren</h3>
+<div class="paragraph">
+<p>Dieser Schritt sollte nur bei Bedarf erfolgen (von 9 auf 10 besteht scheinbar Bedarf).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo rpi-update</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="quellen-aktualisieren"><a class="anchor" href="#quellen-aktualisieren"></a>Quellen aktualisieren</h3>
+<div class="paragraph">
+<p>Jetzt stellen wir die Quellen auf die neuen Repositories der neuen Distribution ein.
+Bei uns stellen wir also Stretch auf Buster in den Quellen um.
+Später analog halt auf den Namen der neuen Distribution.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo nano /etc/apt/sources.list</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wir ersetzen in der Zeile <strong>stretch</strong> durch <strong>buster</strong> und speichern und verlassen die Datei.</p>
+</div>
+<div class="paragraph">
+<p>Jetzt wiederholen wir den Schritt für eine weitere Quellenangabe</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo nano /etc/apt/sources.list.d/raspi.list</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wieder ersetzen wir in der Datei die aktuelle Distribution durch die nachfolgenden Distribution, speichern ab
+und schließen den Editor.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="apt-list-changes-löschen"><a class="anchor" href="#apt-list-changes-löschen"></a>APT List Changes löschen</h3>
+<div class="paragraph">
+<p>Vor dem finalen Upgrade löschen wir noch die ListChanges.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo apt-get remove apt-listchanges</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="aktualisieren-der-neuen-distribution"><a class="anchor" href="#aktualisieren-der-neuen-distribution"></a>Aktualisieren der neuen Distribution</h3>
+<div class="paragraph">
+<p>Jetzt aktualisieren wir die Distribution aus den neuen Quellen. Es ist damit zu rechnen, dass sehr viele
+interaktive Abfragen kommen. Also nicht weglaufen sondern dabei bleiben.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo apt update
+sudo apt dist-upgrade</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="unsupportete-pakete-löschen"><a class="anchor" href="#unsupportete-pakete-löschen"></a>Unsupportete Pakete löschen</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo apt purge timidity lxmusic gnome-disk-utility deluge-gtk evince wicd wicd-gtk clipit usermode gucharmap gnome-system-tools pavucontrol</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="installation-aufräumen"><a class="anchor" href="#installation-aufräumen"></a>Installation aufräumen</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo apt autoremove -y</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wenn erfolgreich dann noch das target autoclean des Paketmanagers aufrufen.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo apt autoclean</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Und zum Abschluss neu starten mit:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo reboot</code></pre>
 </div>
 </div>
 </div>
