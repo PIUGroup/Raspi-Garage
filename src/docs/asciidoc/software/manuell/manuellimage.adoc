@@ -110,6 +110,24 @@ sudo shutdown now
 
 xref:../../index.adoc#content[Zurück zur Übersicht].
 
+=== APT Lock entfernen
+
+Falls die Remote ssh Verbindung während der Installation abbricht muss man das Lock entfernen und neu aufsetzen.
+Es sind genau 2 Lock Dateien zu löschen
+
+[source,bash]
+----
+sudo rm /var/cache/apt/archives/lock
+
+----
+
+Anschließend muss die Installation neu aufgesetzt werden mit:
+
+[source,bash]
+----
+sudo dpkg --configure -a
+----
+
 === Allgemeine Konfiguration ändern
 
 Dieses Skript führt die allgemeine Konfiguration auf dem Pi aus. Hier werden sowas wie Sprache, Zeitzone,
@@ -261,9 +279,82 @@ sudo apt dist-upgrade -y
 
 === Firmware des Pi aktualisieren
 
+Dieser Schritt sollte nur bei Bedarf erfolgen (von 9 auf 10 besteht scheinbar Bedarf).
+
 [source,bash]
 ----
 sudo rpi-update
+----
+
+=== Quellen aktualisieren
+
+Jetzt stellen wir die Quellen auf die neuen Repositories der neuen Distribution ein.
+Bei uns stellen wir also Stretch auf Buster in den Quellen um.
+Später analog halt auf den Namen der neuen Distribution.
+
+[source,bash]
+----
+sudo nano /etc/apt/sources.list
+----
+
+Wir ersetzen in der Zeile **stretch** durch **buster** und speichern und verlassen die Datei.
+
+Jetzt wiederholen wir den Schritt für eine weitere Quellenangabe
+
+[source,bash]
+----
+sudo nano /etc/apt/sources.list.d/raspi.list
+----
+
+Wieder ersetzen wir in der Datei die aktuelle Distribution durch die nachfolgenden Distribution, speichern ab
+und schließen den Editor.
+
+=== APT List Changes löschen
+
+Vor dem finalen Upgrade löschen wir noch die ListChanges.
+
+[source,bash]
+----
+sudo apt-get remove apt-listchanges
+----
+
+=== Aktualisieren der neuen Distribution
+
+Jetzt aktualisieren wir die Distribution aus den neuen Quellen. Es ist damit zu rechnen, dass sehr viele
+interaktive Abfragen kommen. Also nicht weglaufen sondern dabei bleiben.
+
+[source,bash]
+----
+sudo apt update
+sudo apt dist-upgrade
+----
+
+=== Unsupportete Pakete löschen
+
+[source,bash]
+----
+sudo apt purge timidity lxmusic gnome-disk-utility deluge-gtk evince wicd wicd-gtk clipit usermode gucharmap gnome-system-tools pavucontrol
+----
+
+=== Installation aufräumen
+
+[source,bash]
+----
+sudo apt autoremove -y
+----
+
+Wenn erfolgreich dann noch das target autoclean des Paketmanagers aufrufen.
+
+[source,bash]
+----
+sudo apt autoclean
+----
+
+Und zum Abschluss neu starten mit:
+
+[source,bash]
+----
+sudo reboot
 ----
 
 
