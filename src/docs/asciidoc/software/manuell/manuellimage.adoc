@@ -45,10 +45,43 @@ Gitbash oder Total Commander sind Euer Freund.
 xref:../../index.adoc#content[Zurück zur Übersicht].
 
 == OS Version ermitteln
+
 [source,bash]
 ----
 cat /etc/os-release
 ----
+
+== Remote Backup vom Pi als Image ziehen
+
+(Quelle: https://pixelfriedhof.com/en/remote-backup-your-raspberry-pi-with-ssh-via-terminal/)
+
+Den aktuellen Zustand des Pi kann man remote per ssh als Image ziehen. Dazu wieder eine Bash öffnen,
+unter Windows zum Beispiel die gitbash.
+
+[source,bash]
+----
+ ssh pi@192.168.20.22 "sudo dd if=/dev/mmcblk0 bs=1M | gzip -" | dd of=~/Desktop/backup20230906.gz
+----
+
+IMPORTANT: Der Restore eines Images auf den Pi geht nicht remote. Daher muss der Pi heruntergefahren werden, die
+SD Karte entnommen und das Image separat auf die SD Karte übertragen werden.
+
+== Pi Image verkleinern
+
+(Quelle: https://techgeeks.de/raspberry-pi-image-installieren-backup-und-verkleinern/ )
+
+Beim Verkleinern soll keine Information verloren gehen. Es dient nur der Platzverringerung für die Lagerung der Images.
+Wenn ein Image auf dem Pi aufgespielt wurde und der Pi läuft, kann das Image jederzeit wieder über die
+Einstellung "Expand Filesystem" im folgenden Konfigurationsprogramm `sudo rpi-config` auf das Maximum der SD Karte
+vergrößert werden.
+
+Zur Verkleinerung einer abgelegten Imagedatei
+
+[source,bash]
+----
+ wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh
+----
+
 
 
 [reftext="Nachkonfiguration"]
