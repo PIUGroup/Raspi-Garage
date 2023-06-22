@@ -457,6 +457,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#os-version-ermitteln-2">OS Version ermitteln</a></li>
 <li><a href="#apt-lock-entfernen">APT Lock entfernen</a></li>
 <li><a href="#allgemeine-konfiguration-ändern">Allgemeine Konfiguration ändern</a></li>
+<li><a href="#file-transfer">File Transfer</a></li>
 </ul>
 </li>
 <li><a href="#wlan-einrichten">WLAN einrichten</a></li>
@@ -675,6 +676,24 @@ Tastaturlayout etc. festgelegt:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">/usr/bin/raspi-config</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="../../index.html#content">Zurück zur Übersicht</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="file-transfer"><a class="anchor" href="#file-transfer"></a>File Transfer</h3>
+<div class="paragraph">
+<p>Mit diversen Tools (rcp,rsh,&#8230;&#8203;) lassen sich Dateien vom Pi zu einem anderen Rechner und zurück transportieren. Am einfachsten
+funktioniert es mit <code>scp</code>. Dieses Werkzeug steht sowohl auf dem Pi als auch in der gitbash unter Windows zur Verfügung.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"># Zum Pi kopieren
+scp ./meineDatei.pdf pi@raspihostname:/home/pi/meineDatei.pdf
+# Vom Pi kopieren, aktuelles Verzeichnis ist schreibbar für mich
+scp pi@raspihostname:/home/pi/meineDatei.pdf .</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -960,7 +979,7 @@ sudo apt dist-upgrade</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version Ausgabe 1.0.0-SNAPSHOT<br>
-Last updated 09.06.2023 
+Last updated 22.06.2023 
 </div>
 </div>
 </body>
