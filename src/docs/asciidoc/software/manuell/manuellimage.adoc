@@ -147,6 +147,22 @@ Tastaturlayout etc. festgelegt:
 
 xref:../../index.adoc#content[Zurück zur Übersicht].
 
+=== File Transfer
+
+Mit diversen Tools (rcp,rsh,...) lassen sich Dateien vom Pi zu einem anderen Rechner und zurück transportieren. Am einfachsten
+funktioniert es mit `scp`. Dieses Werkzeug steht sowohl auf dem Pi als auch in der gitbash unter Windows zur Verfügung.
+
+[source,bash]
+----
+# Zum Pi kopieren
+scp ./meineDatei.pdf pi@raspihostname:/home/pi/meineDatei.pdf
+# Vom Pi kopieren, aktuelles Verzeichnis ist schreibbar für mich
+scp pi@raspihostname:/home/pi/meineDatei.pdf .
+----
+
+xref:../../index.adoc#content[Zurück zur Übersicht].
+
+
 [reftext="WLAN einrichten"]
 == WLAN einrichten
 
