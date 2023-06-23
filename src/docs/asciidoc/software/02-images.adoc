@@ -1,6 +1,9 @@
-Bevor ihr ein Betriebssystem in Form eines images installiert, solltet Ihr den Pi zusammengebaut und angeschlossen haben. Wie das geht habe ich beschrieben in xref:../../hardware/raspi4b/01-montageanleitung.adoc[Raspberry Pi 4 Model B zusammenbauen].
-
 == Installation mittels Imager
+
+IMPORTANT: Bevor ihr ein Betriebssystem in Form eines images installiert, solltet Ihr den Pi zusammengebaut
+und angeschlossen haben. Wie das geht habe ich beschrieben
+in xref:../hardware/raspi4b/01-montageanleitung.adoc[Raspberry Pi 4 Model B zusammenbauen].
+
 Als erstes benötigt Ihr eine SD Karte, ich habe eine 32 GB große genutzt aber das sollte auch deutlich kleiner gehen.
 Generell würde ich immer ein Betriebssystem ohne Desktop aufsetzen (aktuell unter dem Namen "Raspberry Pi OS Lite" gehandelt),
 weil ich den Pi für Aufgaben benötige die er alleine ohne Nutzerinteraktionen erledigen soll. Beispielsweise Spam Unterdrückung
@@ -34,7 +37,7 @@ Damit seid ihr fertig, das Image ist auf der SD Karte, die könnt ihr in den Pi 
 Hier gibt es weitere
 link:https://recoverit.wondershare.de/memorycard-recovery/format-sd-card-for-raspberry-pi.html[Details zum Filesystem auf der SD Karte]
 
-xref:../index.adoc#content[Zurück zur Übersicht].
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
 
 == Download der Quellen
@@ -42,7 +45,7 @@ xref:../index.adoc#content[Zurück zur Übersicht].
 Ein Download des Images ist beispielsweise hier
 möglich: https://www.raspberrypi.com/software/operating-systems/[Images von raspberrypi.com]
 
-xref:../index.adoc#content[Zurück zur Übersicht].
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
 == Manuelles Aufspielen eines Images
 
@@ -62,7 +65,7 @@ if:: steht für input Pfad, also der Weg zur Image
 of:: steht für output Pfad, also der Weg zur SD Karte (Korrekten Mount Path beachten!).
 
 
-xref:../index.adoc#content[Zurück zur Übersicht].
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
 
 == Images unter Windows einhängen
@@ -85,4 +88,4 @@ Tastatur an den Pi anschließen will oder man sich nicht mit ssh über LAN auf d
 einfach die SD Karte aus dem Pi nehmen, im Windows mounten, die WLAN Konfig bearbeiten und die SD Karte wieder in den Pi
 einsetzen - fertig :)
 
-xref:../index.adoc#content[Zurück zur Übersicht].
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
