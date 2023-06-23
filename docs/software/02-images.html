@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.16">
-<title>Softwareübersicht</title>
+<title>Installation mittels Imager</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -443,62 +443,141 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#softwareübersicht">Softwareübersicht</a>
-<ul class="sectlevel2">
-<li><a href="#images">Images</a></li>
-<li><a href="#manuelle-anpassungen">Manuelle Anpassungen</a></li>
-</ul>
-</li>
+<li><a href="#installation-mittels-imager">Installation mittels Imager</a></li>
+<li><a href="#download-der-quellen">Download der Quellen</a></li>
+<li><a href="#manuelles-aufspielen-eines-images">Manuelles Aufspielen eines Images</a></li>
+<li><a href="#images-unter-windows-einhängen">Images unter Windows einhängen</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
+<div class="paragraph">
+<p>Bevor ihr ein Betriebssystem in Form eines images installiert, solltet Ihr den Pi zusammengebaut und angeschlossen haben. Wie das geht habe ich beschrieben in <a href="../../hardware/raspi4b/01-montageanleitung.html">Raspberry Pi 4 Model B zusammenbauen</a>.</p>
+</div>
 <div class="sect1">
-<h2 id="softwareübersicht"><a class="anchor" href="#softwareübersicht"></a>Softwareübersicht</h2>
+<h2 id="installation-mittels-imager"><a class="anchor" href="#installation-mittels-imager"></a>Installation mittels Imager</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="images"><a class="anchor" href="#images"></a>Images</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="software/02-images.html#installation-mittels-imager">Pi Image mit Imager erstellen</a></p>
-</li>
-<li>
-<p><a href="software/02-images.html#download-der-quellen">Pi Image manueller Download</a></p>
-</li>
-<li>
-<p><a href="software/02-images.html#manuelles-aufspielen-eines-images">Pi Image manuell aufspielen</a></p>
-</li>
-<li>
-<p><a href="software/02-images.html#images-unter-windows-einhängen">Pi Image unter Windows einhängen</a></p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Als erstes benötigt Ihr eine SD Karte, ich habe eine 32 GB große genutzt aber das sollte auch deutlich kleiner gehen.
+Generell würde ich immer ein Betriebssystem ohne Desktop aufsetzen (aktuell unter dem Namen "Raspberry Pi OS Lite" gehandelt),
+weil ich den Pi für Aufgaben benötige die er alleine ohne Nutzerinteraktionen erledigen soll. Beispielsweise Spam Unterdrückung
+mit pi-hole oder Synchronisation von Ablagen für Musik und Bücher mittels resilio-sync. Am einfachsten geht es über den Raspberry Pi
+Imager welchen ihr auf der verlinkten <a href="https://www.raspberrypi.com/software/">Raspi Homepage</a> herunterladen könnt.</p>
+</div>
+<div class="paragraph">
+<p>Der Imager bietet genügend Auswahl für eine einfache selbsterklärende Installation. Wichtig ist, dass Ihr unter
+Optionen schon mal den Hostnamen, die SSH Authentifizierungsart, einen Pi Nutzeraccount mit Passwort und den
+WLAN Zugang festlegen solltet. Auch ein bisl Schnick Schnack wie Sprache, Zeitzone und Programmverhalten
+verringern die noch notwendige Arbeit. Hier meine Einstellungen:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/imager/imager-page1.png" alt="imager page1" title="Einstellungen Page1"></span>
+<span class="image"><img src="./images/imager/imager-page2.png" alt="imager page2" title="Einstellungen Page2"></span>
+<span class="image"><img src="./images/imager/imager-page3.png" alt="imager page3" title="Einstellungen Page3"></span></p>
+</div>
+<div class="paragraph">
+<p>Die Einträge sind natürlich nur Beispiele. Da der Nutzer <strong>pi</strong> früher Standard war, habe ich ihn als Beispiel eingetragen.
+Für die Sicherheit wäre es allerdings besser einen anderen Namen zu nutzen. Falls Ihr doch pi als Account wählt, wird
+Euch das System darauf hinweisen, dass es ungeschickt ist den Default Nutzer pi zu verwenden.</p>
+</div>
+<div class="paragraph">
+<p>Unter dem Punkt Raspberry Pi OS (other) lassen sich auch die Varianten ohne Desktop auswählen.</p>
+</div>
+<div class="paragraph">
+<p>Gut jetzt noch die SD Karte reinstecken und in der Auswahl die richtige SD Karte auswählen (da sollte man gut
+aufpassen und auf keinen Fall c: oder d: auswählen - sonst ist unter Windows, kein Windows mehr da) dann auf
+Schreiben und dann beginnt der Schreibprozess welcher das neue Raspi Image über alles bügelt was je vorher da
+gewesen ist - sprich die Daten die vorher auf der SD Karte waren, sind weg.</p>
+</div>
+<div class="paragraph">
+<p>Damit seid ihr fertig, das Image ist auf der SD Karte, die könnt ihr in den Pi stecken und ihn starten.</p>
+</div>
+<div class="paragraph">
+<p>(In meiner Version besteht das Image aus einer fat32 Boot Partition und einer ext4 Partition mit dem Rootfilesystem)</p>
+</div>
+<div class="paragraph">
+<p>Hier gibt es weitere
+<a href="https://recoverit.wondershare.de/memorycard-recovery/format-sd-card-for-raspberry-pi.html">Details zum Filesystem auf der SD Karte</a></p>
+</div>
+<div class="paragraph">
+<p><a href="../index.html#content">Zurück zur Übersicht</a>.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="manuelle-anpassungen"><a class="anchor" href="#manuelle-anpassungen"></a>Manuelle Anpassungen</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="software/manuell/manuellimage.html#download-quellen">Image Download</a></p>
-</li>
-<li>
-<p><a href="software/manuell/manuellimage.html#aufspielen-eines-images">Manuell Images Aufspielen und Einrichten</a></p>
-</li>
-<li>
-<p><a href="software/manuell/manuellimage.html#ssh-aktivieren">SSH aktivieren</a></p>
-</li>
-<li>
-<p><a href="software/manuell/manuellimage.html#nachkonfiguration-auf-dem-pi">Nachkonfiguration des PI</a></p>
-</li>
-<li>
-<p><a href="software/manuell/manuellimage.html#wlan-einrichten">WLAN einrichten</a></p>
-</li>
-<li>
-<p><a href="software/manuell/manuellimage.html#usb-mobile-festplatten-einrichten">Festplatten mounten</a></p>
-</li>
-</ul>
 </div>
+<div class="sect1">
+<h2 id="download-der-quellen"><a class="anchor" href="#download-der-quellen"></a>Download der Quellen</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ein Download des Images ist beispielsweise hier
+möglich: <a href="https://www.raspberrypi.com/software/operating-systems/">Images von raspberrypi.com</a></p>
+</div>
+<div class="paragraph">
+<p><a href="../index.html#content">Zurück zur Übersicht</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="manuelles-aufspielen-eines-images"><a class="anchor" href="#manuelles-aufspielen-eines-images"></a>Manuelles Aufspielen eines Images</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ohne Imager nutzt man zum Aufspielen eines Images auf die SD Karte  üblicherweise den Linuxbefehl <code>dd</code>.
+Unter Linux sollte das kein Problem sein :) beim Mac kenne ich mich nicht aus aber da er auf Linux basiert
+sollte es da auch irgendwo ein dd geben und unter Windows installiert ihr die gitbash,
+die hat ein dd im Bauch. Der Befehl lautet dann:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo dd if=/pfad/von/image.img of=/pfad/zur/sdcard bs=4M</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Die Pfade müsst ihr gemäß Euren verwendeten Pfaden natürlich anpassen.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">if</dt>
+<dd>
+<p>steht für input Pfad, also der Weg zur Image</p>
+</dd>
+<dt class="hdlist1">of</dt>
+<dd>
+<p>steht für output Pfad, also der Weg zur SD Karte (Korrekten Mount Path beachten!).</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><a href="../index.html#content">Zurück zur Übersicht</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="images-unter-windows-einhängen"><a class="anchor" href="#images-unter-windows-einhängen"></a>Images unter Windows einhängen</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>(Quelle: <a href="https://www.howtogeek.com/112888/3-ways-to-access-your-linux-partitions-from-windows/" class="bare">https://www.howtogeek.com/112888/3-ways-to-access-your-linux-partitions-from-windows/</a> )</p>
+</div>
+<div class="paragraph">
+<p>Will man nachträglich Dateien in einem PI Image ändern z.B. die <code>/etc/wpa_supplicant/wpa_supplicant.conf</code> dann geht das
+in der Regel nur auf einem laufenden Raspberry Pi oder mit einem Linux System. Windows kann von sich aus keine Image
+Dateien in sein Filesystem einbinden (evtl. geht es neuerdings mit der WSL2 - dem Windows Subsystem für Linux ab Version 2).</p>
+</div>
+<div class="paragraph">
+<p>Am einfachsten für mich war jedoch der Weg über die Installation der Diver Software
+<a href="https://www.paragon-software.com/home/linuxfs-windows/">Linux File Systems for Windows</a> von Paragon Software.
+Wenn dieser Treiber installiert ist, dann wird die eingesteckte SD Karte mit dem Pi Image erkannt und im Schreib-
+Lesemode gemountet.</p>
+</div>
+<div class="paragraph">
+<p>Damit lassen sich Dateien im Image direkt per Editor z.B. Notpad++ editieren und speichern.</p>
+</div>
+<div class="paragraph">
+<p>Diese Dinge können hilfreich sein, wenn der Wechsel des WLANs schief ging und man aber jetzt nicht erst Monitor und
+Tastatur an den Pi anschließen will oder man sich nicht mit ssh über LAN auf den Pi verbinden möchte. Dann kann man
+einfach die SD Karte aus dem Pi nehmen, im Windows mounten, die WLAN Konfig bearbeiten und die SD Karte wieder in den Pi
+einsetzen - fertig :)</p>
+</div>
+<div class="paragraph">
+<p><a href="../index.html#content">Zurück zur Übersicht</a>.</p>
 </div>
 </div>
 </div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.16">
-<title>Download Quellen</title>
+<title>Konfigurationen</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -443,13 +443,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#download-quellen">Download Quellen</a></li>
-<li><a href="#aufspielen-eines-images">Aufspielen eines Images</a></li>
+<li><a href="#konfigurationen">Konfigurationen</a></li>
 <li><a href="#ssh-aktivieren">SSH aktivieren</a></li>
 <li><a href="#os-version-ermitteln">OS Version ermitteln</a></li>
 <li><a href="#remote-backup-vom-pi-als-image-ziehen">Remote Backup vom Pi als Image ziehen</a></li>
 <li><a href="#pi-image-verkleinern">Pi Image verkleinern</a></li>
-<li><a href="#images-unter-windows-einhängen">Images unter Windows einhängen</a></li>
 <li><a href="#nachkonfiguration-auf-dem-pi">Nachkonfiguration auf dem PI</a>
 <ul class="sectlevel2">
 <li><a href="#immer-zu-beginn">Immer zu Beginn</a></li>
@@ -480,49 +478,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="download-quellen"><a class="anchor" href="#download-quellen"></a>Download Quellen</h2>
+<h2 id="konfigurationen"><a class="anchor" href="#konfigurationen"></a>Konfigurationen</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Ein Download des Images ist beispielsweise hier
-möglich: <a href="https://www.raspberrypi.com/software/operating-systems/">Images von raspberrypi.com</a></p>
-</div>
-<div class="paragraph">
-<p><a href="../../index.html#content">Zurück zur Übersicht</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="aufspielen-eines-images"><a class="anchor" href="#aufspielen-eines-images"></a>Aufspielen eines Images</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Ohne Imager nutzt man zum Aufspielen eines Images auf die SD Karte  üblicherweise den Linuxbefehl <code>dd</code>.
-Unter Linux sollte das kein Problem sein :) beim Mac kenne ich mich nicht aus aber da er auf Linux basiert
-sollte es da auch irgendwo ein dd geben und unter Windows installiert ihr die gitbash,
-die hat ein dd im Bauch. Der Befehl lautet dann:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">sudo dd if=/pfad/von/image.img of=/pfad/zur/sdcard bs=4M</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Die Pfade müsst ihr gemäß Euren verwendeten Pfaden natürlich anpassen.</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">if</dt>
-<dd>
-<p>steht für input Pfad, also der Weg zur Image</p>
-</dd>
-<dt class="hdlist1">of</dt>
-<dd>
-<p>steht für output Pfad, also der Weg zur SD Karte (Korrekten Mount Path beachten!).</p>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p><a href="../../index.html#content">Zurück zur Übersicht</a>.</p>
-</div>
+
 </div>
 </div>
 <div class="sect1">
@@ -606,37 +564,6 @@ vergrößert werden.</p>
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash"> wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh</code></pre>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="images-unter-windows-einhängen"><a class="anchor" href="#images-unter-windows-einhängen"></a>Images unter Windows einhängen</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>(Quelle: <a href="https://www.howtogeek.com/112888/3-ways-to-access-your-linux-partitions-from-windows/" class="bare">https://www.howtogeek.com/112888/3-ways-to-access-your-linux-partitions-from-windows/</a> )</p>
-</div>
-<div class="paragraph">
-<p>Will man nachträglich Dateien in einem PI Image ändern z.B. die <code>/etc/wpa_supplicant/wpa_supplicant.conf</code> dann geht das
-in der Regel nur auf einem laufenden Raspberry Pi oder mit einem Linux System. Windows kann von sich aus keine Image
-Dateien in sein Filesystem einbinden (evtl. geht es neuerdings mit der WSL2 - dem Windows Subsystem für Linux ab Version 2).</p>
-</div>
-<div class="paragraph">
-<p>Am einfachsten für mich war jedoch der Weg über die Installation der Diver Software
-<a href="https://www.paragon-software.com/home/linuxfs-windows/">Linux File Systems for Windows</a> von Paragon Software.
-Wenn dieser Treiber installiert ist, dann wird die eingesteckte SD Karte mit dem Pi Image erkannt und im Schreib-
-Lesemode gemountet.</p>
-</div>
-<div class="paragraph">
-<p>Damit lassen sich Dateien im Image direkt per Editor z.B. Notpad++ editieren und speichern.</p>
-</div>
-<div class="paragraph">
-<p>Diese Dinge können hilfreich sein, wenn der Wechsel des WLANs schief ging und man aber jetzt nicht erst Monitor und
-Tastatur an den Pi anschließen will oder man sich nicht mit ssh über LAN auf den Pi verbinden möchte. Dann kann man
-einfach die SD Karte aus dem Pi nehmen, im Windows mounten, die WLAN Konfig bearbeiten und die SD Karte wieder in den Pi
-einsetzen - fertig :)</p>
-</div>
-<div class="paragraph">
-<p><a href="../../index.html#content">Zurück zur Übersicht</a>.</p>
 </div>
 </div>
 </div>
@@ -756,7 +683,7 @@ verbunden und gestartet ist:</p>
 update_config=1
 country=DE
 network={
-ssid=”franken.freifunk.net”
+ssid="franken.freifunk.net"
 key_mgmt=NONE
 priority=1
 }</code></pre>
