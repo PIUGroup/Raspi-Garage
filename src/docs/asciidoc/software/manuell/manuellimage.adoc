@@ -82,7 +82,27 @@ Zur Verkleinerung einer abgelegten Imagedatei
  wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh
 ----
 
+== Images unter Windows einhängen
 
+(Quelle: https://www.howtogeek.com/112888/3-ways-to-access-your-linux-partitions-from-windows/ )
+
+Will man nachträglich Dateien in einem PI Image ändern z.B. die `/etc/wpa_supplicant/wpa_supplicant.conf` dann geht das
+in der Regel nur auf einem laufenden Raspberry Pi oder mit einem Linux System. Windows kann von sich aus keine Image
+Dateien in sein Filesystem einbinden (evtl. geht es neuerdings mit der WSL2 - dem Windows Subsystem für Linux ab Version 2).
+
+Am einfachsten für mich war jedoch der Weg über die Installation der Diver Software
+link:https://www.paragon-software.com/home/linuxfs-windows/[Linux File Systems for Windows] von Paragon Software.
+Wenn dieser Treiber installiert ist, dann wird die eingesteckte SD Karte mit dem Pi Image erkannt und im Schreib-
+Lesemode gemountet.
+
+Damit lassen sich Dateien im Image direkt per Editor z.B. Notpad++ editieren und speichern.
+
+Diese Dinge können hilfreich sein, wenn der Wechsel des WLANs schief ging und man aber jetzt nicht erst Monitor und
+Tastatur an den Pi anschließen will oder man sich nicht mit ssh über LAN auf den Pi verbinden möchte. Dann kann man
+einfach die SD Karte aus dem Pi nehmen, im Windows mounten, die WLAN Konfig bearbeiten und die SD Karte wieder in den Pi
+einsetzen - fertig :)
+
+xref:../../index.adoc#content[Zurück zur Übersicht].
 
 [reftext="Nachkonfiguration"]
 == Nachkonfiguration auf dem PI
