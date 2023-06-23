@@ -12,6 +12,10 @@
 === Manuelle Konfiguration
 
 * xref:software/03-manualconfig.adoc#ssh-aktivieren[SSH aktivieren]
+* xref:software/03-manualconfig.adoc#os-version-ermitteln[OS Version ermitteln]
+* xref:software/03-manualconfig.adoc#remote-backup-vom-pi-als-image-ziehen[Remote Backup als Image ziehen]
+* xref:software/03-manualconfig.adoc#pi-image-verkleinern[Image verkleinern]
 * xref:software/03-manualconfig.adoc#nachkonfiguration-auf-dem-pi[Nachkonfiguration des PI]
 * xref:software/03-manualconfig.adoc#wlan-einrichten[WLAN einrichten]
 * xref:software/03-manualconfig.adoc#usb-mobile-festplatten-einrichten[Festplatten mounten]
+* xref:software/03-manualconfig.adoc#os-upgrade-stretch-auf-buster[OS Upgrade von Stretch auf Buster]

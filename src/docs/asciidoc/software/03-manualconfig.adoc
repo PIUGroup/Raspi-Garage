@@ -24,6 +24,8 @@ xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 cat /etc/os-release
 ----
 
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
+
 == Remote Backup vom Pi als Image ziehen
 
 (Quelle: https://pixelfriedhof.com/en/remote-backup-your-raspberry-pi-with-ssh-via-terminal/)
@@ -38,6 +40,8 @@ unter Windows zum Beispiel die gitbash.
 
 IMPORTANT: Der Restore eines Images auf den Pi geht nicht remote. Daher muss der Pi heruntergefahren werden, die
 SD Karte entnommen und das Image separat auf die SD Karte übertragen werden.
+
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
 == Pi Image verkleinern
 
@@ -55,6 +59,7 @@ Zur Verkleinerung einer abgelegten Imagedatei
  wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh
 ----
 
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
 [reftext="Nachkonfiguration"]
 == Nachkonfiguration auf dem PI
@@ -86,9 +91,6 @@ sudo shutdown now
 cat /etc/os-release
 ----
 
-
-xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
-
 === APT Lock entfernen
 
 Falls die Remote ssh Verbindung während der Installation abbricht muss man das Lock entfernen und neu aufsetzen.
@@ -97,7 +99,6 @@ Es sind genau 2 Lock Dateien zu löschen
 [source,bash]
 ----
 sudo rm /var/cache/apt/archives/lock
-
 ----
 
 Anschließend muss die Installation neu aufgesetzt werden mit:
@@ -263,7 +264,6 @@ cat /etc/os-release
 Hier sieht man, welches die nächste Version ist auf die Upgraded wird:
 https://en.wikipedia.org/wiki/Raspberry_Pi_OS
 
-
 === Pakete aktualisieren
 
 [source,bash]
@@ -352,4 +352,4 @@ Und zum Abschluss neu starten mit:
 sudo reboot
 ----
 
-
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
