@@ -15,7 +15,7 @@ Wichtig unter Windows: Darauf achten, dass nicht .txt oder eine andere Endung dr
 Gitbash oder Total Commander sind Euer Freund.
 
 
-xref:../../index.adoc#content[Zurück zur Übersicht].
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
 == OS Version ermitteln
 
@@ -87,7 +87,7 @@ cat /etc/os-release
 ----
 
 
-xref:../../index.adoc#content[Zurück zur Übersicht].
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
 === APT Lock entfernen
 
@@ -117,7 +117,7 @@ Tastaturlayout etc. festgelegt:
 /usr/bin/raspi-config
 ----
 
-xref:../../index.adoc#content[Zurück zur Übersicht].
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
 === File Transfer
 
@@ -132,7 +132,7 @@ scp ./meineDatei.pdf pi@raspihostname:/home/pi/meineDatei.pdf
 scp pi@raspihostname:/home/pi/meineDatei.pdf .
 ----
 
-xref:../../index.adoc#content[Zurück zur Übersicht].
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
 
 [reftext="WLAN einrichten"]
@@ -176,7 +176,7 @@ ip l
 wpa_cli status
 ----
 
-xref:../../index.adoc#content[Zurück zur Übersicht].
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
 [reftext="Festplatten mounten"]
 == USB - Mobile Festplatten einrichten
@@ -247,7 +247,7 @@ Auf jeden Fall wird es schwierig wenn das automatische mounten kaputt ist.
 
 Im Notfall Eure Zeile wieder entfernen und prüfen ob es jetzt wieder geht.
 
-xref:../../index.adoc#content[Zurück zur Übersicht].
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
 == OS Upgrade (Stretch auf Buster)
 
