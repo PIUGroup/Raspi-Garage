@@ -11,7 +11,7 @@
 
 === Manuelle Anpassungen
 
-* xref:software/manuell/manuellimage.adoc#ssh-aktivieren[SSH aktivieren]
-* xref:software/manuell/manuellimage.adoc#nachkonfiguration-auf-dem-pi[Nachkonfiguration des PI]
-* xref:software/manuell/manuellimage.adoc#wlan-einrichten[WLAN einrichten]
-* xref:software/manuell/manuellimage.adoc#usb-mobile-festplatten-einrichten[Festplatten mounten]
+* xref:software/03-manualconfig.adoc#ssh-aktivieren[SSH aktivieren]
+* xref:software/03-manualconfig.adoc#nachkonfiguration-auf-dem-pi[Nachkonfiguration des PI]
+* xref:software/03-manualconfig.adoc#wlan-einrichten[WLAN einrichten]
+* xref:software/03-manualconfig.adoc#usb-mobile-festplatten-einrichten[Festplatten mounten]
