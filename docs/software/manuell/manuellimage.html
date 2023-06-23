@@ -449,6 +449,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#os-version-ermitteln">OS Version ermitteln</a></li>
 <li><a href="#remote-backup-vom-pi-als-image-ziehen">Remote Backup vom Pi als Image ziehen</a></li>
 <li><a href="#pi-image-verkleinern">Pi Image verkleinern</a></li>
+<li><a href="#images-unter-windows-einhängen">Images unter Windows einhängen</a></li>
 <li><a href="#nachkonfiguration-auf-dem-pi">Nachkonfiguration auf dem PI</a>
 <ul class="sectlevel2">
 <li><a href="#immer-zu-beginn">Immer zu Beginn</a></li>
@@ -605,6 +606,37 @@ vergrößert werden.</p>
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash"> wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="images-unter-windows-einhängen"><a class="anchor" href="#images-unter-windows-einhängen"></a>Images unter Windows einhängen</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>(Quelle: <a href="https://www.howtogeek.com/112888/3-ways-to-access-your-linux-partitions-from-windows/" class="bare">https://www.howtogeek.com/112888/3-ways-to-access-your-linux-partitions-from-windows/</a> )</p>
+</div>
+<div class="paragraph">
+<p>Will man nachträglich Dateien in einem PI Image ändern z.B. die <code>/etc/wpa_supplicant/wpa_supplicant.conf</code> dann geht das
+in der Regel nur auf einem laufenden Raspberry Pi oder mit einem Linux System. Windows kann von sich aus keine Image
+Dateien in sein Filesystem einbinden (evtl. geht es neuerdings mit der WSL2 - dem Windows Subsystem für Linux ab Version 2).</p>
+</div>
+<div class="paragraph">
+<p>Am einfachsten für mich war jedoch der Weg über die Installation der Diver Software
+<a href="https://www.paragon-software.com/home/linuxfs-windows/">Linux File Systems for Windows</a> von Paragon Software.
+Wenn dieser Treiber installiert ist, dann wird die eingesteckte SD Karte mit dem Pi Image erkannt und im Schreib-
+Lesemode gemountet.</p>
+</div>
+<div class="paragraph">
+<p>Damit lassen sich Dateien im Image direkt per Editor z.B. Notpad++ editieren und speichern.</p>
+</div>
+<div class="paragraph">
+<p>Diese Dinge können hilfreich sein, wenn der Wechsel des WLANs schief ging und man aber jetzt nicht erst Monitor und
+Tastatur an den Pi anschließen will oder man sich nicht mit ssh über LAN auf den Pi verbinden möchte. Dann kann man
+einfach die SD Karte aus dem Pi nehmen, im Windows mounten, die WLAN Konfig bearbeiten und die SD Karte wieder in den Pi
+einsetzen - fertig :)</p>
+</div>
+<div class="paragraph">
+<p><a href="../../index.html#content">Zurück zur Übersicht</a>.</p>
 </div>
 </div>
 </div>
@@ -979,7 +1011,7 @@ sudo apt dist-upgrade</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version Ausgabe 1.0.0-SNAPSHOT<br>
-Last updated 22.06.2023 
+Last updated 23.06.2023 
 </div>
 </div>
 </body>
