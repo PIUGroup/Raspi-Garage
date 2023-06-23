@@ -1,8 +1,13 @@
 == Softwareübersicht
 
-=== Imager
+=== Images
 
-* xref:software/imager/baseimage.adoc[Grundimage aufspielen]
+* xref:software/02-images.adoc#installation-mittels-imager[Pi Image mit Imager erstellen]
+* xref:software/02-images.adoc#download-der-quellen[Pi Image manueller Download]
+* xref:software/02-images.adoc#manuelles-aufspielen-eines-images[Pi Image manuell aufspielen]
+* xref:software/02-images.adoc#images-unter-windows-einhängen[Pi Image unter Windows einhängen]
+
+
 
 === Manuelle Anpassungen
 
