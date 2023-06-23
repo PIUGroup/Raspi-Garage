@@ -86,6 +86,9 @@
                                 <requireMavenVersion>
                                     <version>${maven.version}</version>
                                 </requireMavenVersion>
+                                <requireJavaVersion>
+                                   <version>19</version>
+                                </requireJavaVersion>
                             </rules>
                         </configuration>
                     </execution>
