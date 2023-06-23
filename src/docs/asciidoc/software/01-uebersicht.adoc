@@ -1,15 +1,15 @@
 == Softwareübersicht
 
-=== Images
+=== Pi Images
 
-* xref:software/02-images.adoc#installation-mittels-imager[Pi Image mit Imager erstellen]
-* xref:software/02-images.adoc#download-der-quellen[Pi Image manueller Download]
-* xref:software/02-images.adoc#manuelles-aufspielen-eines-images[Pi Image manuell aufspielen]
-* xref:software/02-images.adoc#images-unter-windows-einhängen[Pi Image unter Windows einhängen]
+* xref:software/02-images.adoc#installation-mittels-imager[Mit Imager erstellen und aufspielen]
+* xref:software/02-images.adoc#download-der-quellen[Manueller Download]
+* xref:software/02-images.adoc#manuelles-aufspielen-eines-images[Manuell aufspielen]
+* xref:software/02-images.adoc#images-unter-windows-einhängen[Pi Image als SD Karte unter Windows einhängen]
 
 
 
-=== Manuelle Anpassungen
+=== Manuelle Konfiguration
 
 * xref:software/03-manualconfig.adoc#ssh-aktivieren[SSH aktivieren]
 * xref:software/03-manualconfig.adoc#nachkonfiguration-auf-dem-pi[Nachkonfiguration des PI]
