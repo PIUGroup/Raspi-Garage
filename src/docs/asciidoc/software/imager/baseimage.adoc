@@ -29,4 +29,9 @@ gewesen ist - sprich die Daten die vorher auf der SD Karte waren, sind weg.
 
 Damit seid ihr fertig, das Image ist auf der SD Karte, die könnt ihr in den Pi stecken und ihn starten.
 
+(In meiner Version besteht das Image aus einer fat32 Boot Partition und einer ext4 Partition mit dem Rootfilesystem)
+
+Hier gibt es weitere
+link:https://recoverit.wondershare.de/memorycard-recovery/format-sd-card-for-raspberry-pi.html[Details zum Filesystem auf der SD Karte]
+
 xref:../../index.adoc#content[Zurück zur Übersicht].
