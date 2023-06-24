@@ -460,6 +460,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#wlan-einrichten">WLAN einrichten</a></li>
+<li><a href="#wlan-ändern">WLAN ändern</a>
+<ul class="sectlevel2">
+<li><a href="#netzwerk-schnittstellen-ermitteln">Netzwerk Schnittstellen ermitteln</a></li>
+<li><a href="#wlan-liste">WLAN Liste</a></li>
+<li><a href="#zugangsdaten-ändern">Zugangsdaten ändern</a></li>
+<li><a href="#configdatei-prüfen">Configdatei prüfen</a></li>
+<li><a href="#aktivieren-der-konfiguration">Aktivieren der Konfiguration</a></li>
+</ul>
+</li>
 <li><a href="#usb-mobile-festplatten-einrichten">USB - Mobile Festplatten einrichten</a></li>
 <li><a href="#os-upgrade-stretch-auf-buster">OS Upgrade (Stretch auf Buster)</a>
 <ul class="sectlevel2">
@@ -714,6 +723,107 @@ wpa_cli status</code></pre>
 </div>
 <div class="paragraph">
 <p><a href="../index.html#softwareübersicht">Zurück zur Übersicht</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="wlan-ändern"><a class="anchor" href="#wlan-ändern"></a>WLAN ändern</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>(Quelle: <a href="https://u-labs.de/portal/raspberry-pi-wlan-verbindung-nachtraeglich-einrichten-oder-aendern-so-geht-es-grafisch-konsole/" class="bare">https://u-labs.de/portal/raspberry-pi-wlan-verbindung-nachtraeglich-einrichten-oder-aendern-so-geht-es-grafisch-konsole/</a>)</p>
+</div>
+<div class="sect2">
+<h3 id="netzwerk-schnittstellen-ermitteln"><a class="anchor" href="#netzwerk-schnittstellen-ermitteln"></a>Netzwerk Schnittstellen ermitteln</h3>
+<div class="paragraph">
+<p>Als erstes schauen wir welche Netzwerkschnittstellen am Pi vorhanden sind. In der Standardkonfiguration wird uns nur wlan0
+interessieren.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">netstat -i</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="wlan-liste"><a class="anchor" href="#wlan-liste"></a>WLAN Liste</h3>
+<div class="paragraph">
+<p>Jetzt scannen über die Netzwerkschnittstelle die empfangenen WLAN IDs um zu sehen ob das zu Konfigurierende
+nah genug ist um empfangen zu werden.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"> sudo iwlist wlan0 scan | grep ESSID</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="zugangsdaten-ändern"><a class="anchor" href="#zugangsdaten-ändern"></a>Zugangsdaten ändern</h3>
+<div class="paragraph">
+<p>Nun sind die Zugangsdaten des WLANs im System zu hinterlegen. Dies können wir wie folgt tun:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo wpa_passphrase "Eure WLAN SSID" "Euer Netzwerkschlüssel" | sudo tee -a /etc/wpa_supplicant/wpa_supplicant.conf</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configdatei-prüfen"><a class="anchor" href="#configdatei-prüfen"></a>Configdatei prüfen</h3>
+<div class="paragraph">
+<p>Dei WLAN Konfiguration unter <code>/etc/wpa_supplicant/wpa_supplicant.conf</code> sollte nun Euren Netzwerkeintrag in folgender
+Form mit enthalten:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">network={
+     sssid="Eure WLAN SSID"
+     #psk="Euer Netzwerkschlüssel"
+     psk=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Unter <code>psk</code> kann die Phasphrase des Netzwerkes im Klartext oder verschlüsselt abgelegt sein. Sinnvoll wäre natürlich
+die Phasphrase verschlüsselt abzulegen. Für einen ersten Test kann man aber auch erstmal den Klartext nutzen.</p>
+</div>
+<div class="paragraph">
+<p>In der Praxis hatte ich manchmal das Problem, dass die verschlüsselte Version nicht funktionierte, kann aber nicht
+sagen woran es lag. Ob es ein alter Pi oder eine alte OS Version war, die die Verschlüsselung nicht unterstützte oder
+ob beim Verschlüsseln auf der Konsole irgendwelche Sonderzeichen Probleme bereiteten - weiß ich noch nicht.</p>
+</div>
+<div class="paragraph">
+<p>Manchmal half das Einfügen einer separaten Zeile direkt unter psk mit folgendem Inhalt:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">key_mgmt=WPA-PSK</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Damit wird angegeben welches Verschlüsslungsverfahren im WLAN genutzt wird.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="aktivieren-der-konfiguration"><a class="anchor" href="#aktivieren-der-konfiguration"></a>Aktivieren der Konfiguration</h3>
+<div class="paragraph">
+<p>Wir können die Konfiguration aktivieren mit:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo wpa_supplicant -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wenn alles weiter funktioniert, sollten wir dann aber trotzdem noch einen sauberen Restart vornehmen mit:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo shutdown -r now</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="../index.html#softwareübersicht">Zurück zur Übersicht</a>.</p>
+</div>
 </div>
 </div>
 </div>
