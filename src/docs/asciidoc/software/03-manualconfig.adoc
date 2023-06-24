@@ -233,6 +233,15 @@ In der Praxis hatte ich manchmal das Problem, dass die verschlüsselte Version n
 sagen woran es lag. Ob es ein alter Pi oder eine alte OS Version war, die die Verschlüsselung nicht unterstützte oder
 ob beim Verschlüsseln auf der Konsole irgendwelche Sonderzeichen Probleme bereiteten - weiß ich noch nicht.
 
+Manchmal half das Einfügen einer separaten Zeile direkt unter psk mit folgendem Inhalt:
+
+[source, bash]
+----
+key_mgmt=WPA-PSK
+----
+
+Damit wird angegeben welches Verschlüsslungsverfahren im WLAN genutzt wird.
+
 === Aktivieren der Konfiguration
 
 Wir können die Konfiguration aktivieren mit:
