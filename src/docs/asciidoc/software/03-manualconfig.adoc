@@ -179,7 +179,78 @@ wpa_cli status
 
 xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
-[reftext="Festplatten mounten"]
+== WLAN ändern
+
+(Quelle: https://u-labs.de/portal/raspberry-pi-wlan-verbindung-nachtraeglich-einrichten-oder-aendern-so-geht-es-grafisch-konsole/)
+
+=== Netzwerk Schnittstellen ermitteln
+
+Als erstes schauen wir welche Netzwerkschnittstellen am Pi vorhanden sind. In der Standardkonfiguration wird uns nur wlan0
+interessieren.
+
+[source, bash]
+----
+netstat -i
+----
+
+=== WLAN Liste
+
+Jetzt scannen über die Netzwerkschnittstelle die empfangenen WLAN IDs um zu sehen ob das zu Konfigurierende
+nah genug ist um empfangen zu werden.
+
+[source, bash]
+----
+ sudo iwlist wlan0 scan | grep ESSID
+----
+
+=== Zugangsdaten ändern
+
+Nun sind die Zugangsdaten des WLANs im System zu hinterlegen. Dies können wir wie folgt tun:
+
+[source, bash]
+----
+sudo wpa_passphrase "Eure WLAN SSID" "Euer Netzwerkschlüssel" | sudo tee -a /etc/wpa_supplicant/wpa_supplicant.conf
+----
+
+=== Configdatei prüfen
+
+Dei WLAN Konfiguration unter `/etc/wpa_supplicant/wpa_supplicant.conf` sollte nun Euren Netzwerkeintrag in folgender
+Form mit enthalten:
+
+[source, bash]
+----
+network={
+     sssid="Eure WLAN SSID"
+     #psk="Euer Netzwerkschlüssel"
+     psk=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+}
+----
+
+Unter `psk` kann die Phasphrase des Netzwerkes im Klartext oder verschlüsselt abgelegt sein. Sinnvoll wäre natürlich
+die Phasphrase verschlüsselt abzulegen. Für einen ersten Test kann man aber auch erstmal den Klartext nutzen.
+
+In der Praxis hatte ich manchmal das Problem, dass die verschlüsselte Version nicht funktionierte, kann aber nicht
+sagen woran es lag. Ob es ein alter Pi oder eine alte OS Version war, die die Verschlüsselung nicht unterstützte oder
+ob beim Verschlüsseln auf der Konsole irgendwelche Sonderzeichen Probleme bereiteten - weiß ich noch nicht.
+
+=== Aktivieren der Konfiguration
+
+Wir können die Konfiguration aktivieren mit:
+
+[source, bash]
+----
+sudo wpa_supplicant -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf
+----
+
+Wenn alles weiter funktioniert, sollten wir dann aber trotzdem noch einen sauberen Restart vornehmen mit:
+
+[source, bash]
+----
+sudo shutdown -r now
+----
+
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
+
 == USB - Mobile Festplatten einrichten
 
 (Quelle: https://raspberrytips.com/mount-usb-drive-raspberry-pi/)
