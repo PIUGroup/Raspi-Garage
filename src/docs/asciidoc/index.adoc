@@ -17,7 +17,9 @@ ifndef::imagesdir[:imagesdir: ./images]
 
 == Quellen
 
-* {url-raspidoc}[Offizielle Dokumentation at Github,role=external,window=_blank]
+* {url-raspidoc}[Offizielle Raspberry Pi Dokumentation at Github,role=external,window=_blank]
+* link:https://www.techrepublic.com/article/raspberry-pi-cheat-sheet/[Raspberry Pi Details]
+* link:https://cheatography.com/funthomas424242/cheat-sheets/basics-zum-raspberry-pi/[Raspberry Pi Cheat Sheet von Huluvu424242 (ex FunThomas424242),role=external,window=_blank]
 
 include::hardware/01-uebersicht.adoc[]
 
