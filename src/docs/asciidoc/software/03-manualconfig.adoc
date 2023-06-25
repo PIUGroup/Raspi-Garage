@@ -156,9 +156,23 @@ ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
 country=DE
 network={
-ssid="franken.freifunk.net"
-key_mgmt=NONE
-priority=1
+    ssid="franken.freifunk.net"
+    key_mgmt=NONE
+    priority=1
+}
+----
+
+oder für ein eigenes WLAN nach diesem Beispiel:
+
+[source,bash]
+----
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=DE
+network={
+  ssid="FRITZ!Box 7490"
+  psk="password"
+  key_mgmt=WPA-PSK
 }
 ----
 
@@ -249,6 +263,14 @@ Wir können die Konfiguration aktivieren mit:
 [source, bash]
 ----
 sudo wpa_supplicant -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf
+----
+
+oder über:
+
+[source,bash]
+----
+ip l
+wpa_cli status
 ----
 
 Wenn alles weiter funktioniert, sollten wir dann aber trotzdem noch einen sauberen Restart vornehmen mit:
