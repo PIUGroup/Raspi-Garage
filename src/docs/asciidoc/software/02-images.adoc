@@ -1,3 +1,5 @@
+:imagesdir: ./images
+
 == Installation mittels Imager
 
 IMPORTANT: Bevor ihr ein Betriebssystem in Form eines images installiert, solltet Ihr den Pi zusammengebaut
@@ -15,9 +17,9 @@ Optionen schon mal den Hostnamen, die SSH Authentifizierungsart, einen Pi Nutzer
 WLAN Zugang festlegen solltet. Auch ein bisl Schnick Schnack wie Sprache, Zeitzone und Programmverhalten
 verringern die noch notwendige Arbeit. Hier meine Einstellungen:
 
-image:./imager/imager-page1.png[title=Einstellungen Page1]
-image:./imager/imager-page2.png[title=Einstellungen Page2]
-image:./imager/imager-page3.png[title=Einstellungen Page3]
+image:imager/imager-page1.png[title=Einstellungen Page1]
+image:imager/imager-page2.png[title=Einstellungen Page2]
+image:imager/imager-page3.png[title=Einstellungen Page3]
 
 Die Einträge sind natürlich nur Beispiele. Da der Nutzer **pi** früher Standard war, habe ich ihn als Beispiel eingetragen.
 Für die Sicherheit wäre es allerdings besser einen anderen Namen zu nutzen. Falls Ihr doch pi als Account wählt, wird
