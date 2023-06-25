@@ -1,3 +1,5 @@
+:imagesdir: ./images
+
 === Montageanleitung (Raspberry Pi 4 Modell B)
 
 ==== Quellen

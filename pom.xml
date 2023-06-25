@@ -177,7 +177,7 @@
                             <backend>html5</backend>
                             <preserveDirectories>true</preserveDirectories>
                             <attributes>
-                                <imagesdir>./images</imagesdir>
+<!--                                <imagesdir>./images</imagesdir>-->
                                 <toc>left</toc>
                                 <revnumber>${project.version}</revnumber>
                                 <revdate>${maven.build.timestamp}</revdate>

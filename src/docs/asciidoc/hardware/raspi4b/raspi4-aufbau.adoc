@@ -1,7 +1,9 @@
+:imagesdir: ./images
+
 ==== Aufbau
 
 ===== GPIO Schnittstelle
 
-image:./GPIOBelegung.svg[title=GPIO Belegungsplan]
+image:GPIOBelegung.svg[title=GPIO Belegungsplan]
 
 xref:../../index.adoc#content[Zurück zur Übersicht].
