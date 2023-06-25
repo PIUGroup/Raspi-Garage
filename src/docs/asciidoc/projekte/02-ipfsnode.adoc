@@ -1,0 +1,16 @@
+:imagesdir: ../
+
+== IPFS Node erstellen
+
+=== Basis Image erstellen
+
+Um ein Basisimage zu erstellen gehen wir wie
+im Abschnitt xref:software/02-images.adoc#installation-mittels-imager[Mit Imager erstellen und aufspielen] vor.
+
+Wir legen als Betriebssystem OS Lite fest. Je nachdem ob Ihr Rechner 32 oder 64 Bit unterstützt wählen Sie dann noch
+das Image in der korrekten Architektur aus. Aktuell sollte 64 Bit durchaus gängig sein.
+image:software/images/imager/imager-imageauswahl.png[title=OS Lite 64 Bit auswählen, width=50%, height=50%]
+
+In den Settings sollten wir nicht vergessen gleich die WLAN Konfiguration mit anzugeben. Hier ein Beispiel:
+image:software/images/imager/imager-page2.png[title=WLAN festlegen]
+

@@ -1,1 +1,3 @@
 == Projektübersicht
+
+* xref:projekte/02-ipfsnode.adoc#ipfs-node-erstellen[IPFS Node erstellen]
