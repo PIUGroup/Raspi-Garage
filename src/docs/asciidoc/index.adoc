@@ -1,9 +1,8 @@
 = Raspi-Garage
 Thomas Schubert (Huluvu424242) <huluvu424242@gmail.com>
 v1.0, {docdate}
+:keywords: raspi-garage,raspi,garage,raspberry,raspberry-pi,tutorial,DIYs
 :example-caption!:
-ifndef::imagesdir[:imagesdir: ./images]
-
 :Author:    Thomas Schubert (Huluvu424242) et. al
 :Email:     <huluvu424242@gmail.com>
 :toc-title: Inhaltsverzeichnis
@@ -11,13 +10,14 @@ ifndef::imagesdir[:imagesdir: ./images]
 :icons: font
 :sectnums:
 :xrefstyle: short
-
-
 :url-raspidoc: https://www.raspberrypi.com/documentation/
+ifndef::imagesdir[:imagesdir: ./images]
 
 == Quellen
 
-* {url-raspidoc}[Offizielle Dokumentation at Github,role=external,window=_blank]
+* {url-raspidoc}[Offizielle Raspberry Pi Dokumentation at Github,role=external,window=_blank]
+* link:https://www.techrepublic.com/article/raspberry-pi-cheat-sheet/[Raspberry Pi Details]
+* link:https://cheatography.com/funthomas424242/cheat-sheets/basics-zum-raspberry-pi/[Raspberry Pi Cheat Sheet von Huluvu424242 (ex FunThomas424242),role=external,window=_blank]
 
 include::hardware/01-uebersicht.adoc[]
 

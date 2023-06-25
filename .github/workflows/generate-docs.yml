@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy:
-    name: deploy on github
+    name: Generate Web Site
     runs-on: ubuntu-latest
 
     steps:
@@ -15,7 +15,7 @@ jobs:
       with:
         distribution: 'zulu' # See 'Supported distributions' for available options
         java-version: '19'
-    - name: Deploy to Github Package Registry
+    - name: Commit Generated Website
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |

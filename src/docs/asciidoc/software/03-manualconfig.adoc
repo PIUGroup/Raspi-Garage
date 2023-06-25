@@ -1,31 +1,4 @@
-[reftext="Download Images"]
-== Download Quellen
-
-Ein Download des Images ist beispielsweise hier
-möglich: https://www.raspberrypi.com/software/operating-systems/[Images von raspberrypi.com]
-
-xref:../../index.adoc#content[Zurück zur Übersicht].
-
-[reftext="Image aufspielen"]
-== Aufspielen eines Images
-
-Ohne Imager nutzt man zum Aufspielen eines Images auf die SD Karte  üblicherweise den Linuxbefehl `dd`.
-Unter Linux sollte das kein Problem sein :) beim Mac kenne ich mich nicht aus aber da er auf Linux basiert
-sollte es da auch irgendwo ein dd geben und unter Windows installiert ihr die gitbash,
-die hat ein dd im Bauch. Der Befehl lautet dann:
-
-[source,bash]
-----
-sudo dd if=/pfad/von/image.img of=/pfad/zur/sdcard bs=4M
-----
-
-Die Pfade müsst ihr gemäß Euren verwendeten Pfaden natürlich anpassen.
-
-if:: steht für input Pfad, also der Weg zur Image
-of:: steht für output Pfad, also der Weg zur SD Karte (Korrekten Mount Path beachten!).
-
-
-xref:../../index.adoc#content[Zurück zur Übersicht].
+== Konfigurationen
 
 [reftext="SSH aktivieren"]
 == SSH aktivieren
@@ -42,7 +15,7 @@ Wichtig unter Windows: Darauf achten, dass nicht .txt oder eine andere Endung dr
 Gitbash oder Total Commander sind Euer Freund.
 
 
-xref:../../index.adoc#content[Zurück zur Übersicht].
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
 == OS Version ermitteln
 
@@ -50,6 +23,8 @@ xref:../../index.adoc#content[Zurück zur Übersicht].
 ----
 cat /etc/os-release
 ----
+
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
 == Remote Backup vom Pi als Image ziehen
 
@@ -65,6 +40,8 @@ unter Windows zum Beispiel die gitbash.
 
 IMPORTANT: Der Restore eines Images auf den Pi geht nicht remote. Daher muss der Pi heruntergefahren werden, die
 SD Karte entnommen und das Image separat auf die SD Karte übertragen werden.
+
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
 == Pi Image verkleinern
 
@@ -82,7 +59,7 @@ Zur Verkleinerung einer abgelegten Imagedatei
  wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh
 ----
 
-
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
 [reftext="Nachkonfiguration"]
 == Nachkonfiguration auf dem PI
@@ -108,7 +85,11 @@ sudo shutdown -r now
 sudo shutdown now
 ----
 
-xref:../../index.adoc#content[Zurück zur Übersicht].
+=== OS Version ermitteln
+[source,bash]
+----
+cat /etc/os-release
+----
 
 === APT Lock entfernen
 
@@ -118,7 +99,6 @@ Es sind genau 2 Lock Dateien zu löschen
 [source,bash]
 ----
 sudo rm /var/cache/apt/archives/lock
-
 ----
 
 Anschließend muss die Installation neu aufgesetzt werden mit:
@@ -138,12 +118,29 @@ Tastaturlayout etc. festgelegt:
 /usr/bin/raspi-config
 ----
 
-xref:../../index.adoc#content[Zurück zur Übersicht].
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
+
+=== File Transfer
+
+Mit diversen Tools (rcp,rsh,...) lassen sich Dateien vom Pi zu einem anderen Rechner und zurück transportieren. Am einfachsten
+funktioniert es mit `scp`. Dieses Werkzeug steht sowohl auf dem Pi als auch in der gitbash unter Windows zur Verfügung.
+
+[source,bash]
+----
+# Zum Pi kopieren
+scp ./meineDatei.pdf pi@raspihostname:/home/pi/meineDatei.pdf
+# Vom Pi kopieren, aktuelles Verzeichnis ist schreibbar für mich
+scp pi@raspihostname:/home/pi/meineDatei.pdf .
+----
+
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
+
 
 [reftext="WLAN einrichten"]
 == WLAN einrichten
 
 (Quelle: https://www.elektronik-kompendium.de/sites/raspberry-pi/1912221.htm)
+
 Die Eintragungen für das WLAN erfolgen in der Datei wpa_supplicant.conf während der Pi per Netzwerkkabel mit einem PC
 verbunden und gestartet ist:
 
@@ -160,9 +157,23 @@ ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
 country=DE
 network={
-ssid=”franken.freifunk.net”
-key_mgmt=NONE
-priority=1
+    ssid="franken.freifunk.net"
+    key_mgmt=NONE
+    priority=1
+}
+----
+
+oder für ein eigenes WLAN nach diesem Beispiel:
+
+[source,bash]
+----
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=DE
+network={
+  ssid="FRITZ!Box 7490"
+  psk="password"
+  key_mgmt=WPA-PSK
 }
 ----
 
@@ -181,9 +192,97 @@ ip l
 wpa_cli status
 ----
 
-xref:../../index.adoc#content[Zurück zur Übersicht].
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
-[reftext="Festplatten mounten"]
+== WLAN ändern
+
+(Quelle: https://u-labs.de/portal/raspberry-pi-wlan-verbindung-nachtraeglich-einrichten-oder-aendern-so-geht-es-grafisch-konsole/)
+
+=== Netzwerk Schnittstellen ermitteln
+
+Als erstes schauen wir welche Netzwerkschnittstellen am Pi vorhanden sind. In der Standardkonfiguration wird uns nur wlan0
+interessieren.
+
+[source, bash]
+----
+netstat -i
+----
+
+=== WLAN Liste
+
+Jetzt scannen über die Netzwerkschnittstelle die empfangenen WLAN IDs um zu sehen ob das zu Konfigurierende
+nah genug ist um empfangen zu werden.
+
+[source, bash]
+----
+ sudo iwlist wlan0 scan | grep ESSID
+----
+
+=== Zugangsdaten ändern
+
+Nun sind die Zugangsdaten des WLANs im System zu hinterlegen. Dies können wir wie folgt tun:
+
+[source, bash]
+----
+sudo wpa_passphrase "Eure WLAN SSID" "Euer Netzwerkschlüssel" | sudo tee -a /etc/wpa_supplicant/wpa_supplicant.conf
+----
+
+=== Configdatei prüfen
+
+Dei WLAN Konfiguration unter `/etc/wpa_supplicant/wpa_supplicant.conf` sollte nun Euren Netzwerkeintrag in folgender
+Form mit enthalten:
+
+[source, bash]
+----
+network={
+     sssid="Eure WLAN SSID"
+     #psk="Euer Netzwerkschlüssel"
+     psk=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+}
+----
+
+Unter `psk` kann die Phasphrase des Netzwerkes im Klartext oder verschlüsselt abgelegt sein. Sinnvoll wäre natürlich
+die Phasphrase verschlüsselt abzulegen. Für einen ersten Test kann man aber auch erstmal den Klartext nutzen.
+
+In der Praxis hatte ich manchmal das Problem, dass die verschlüsselte Version nicht funktionierte, kann aber nicht
+sagen woran es lag. Ob es ein alter Pi oder eine alte OS Version war, die die Verschlüsselung nicht unterstützte oder
+ob beim Verschlüsseln auf der Konsole irgendwelche Sonderzeichen Probleme bereiteten - weiß ich noch nicht.
+
+Manchmal half das Einfügen einer separaten Zeile direkt unter psk mit folgendem Inhalt:
+
+[source, bash]
+----
+key_mgmt=WPA-PSK
+----
+
+Damit wird angegeben welches Verschlüsslungsverfahren im WLAN genutzt wird.
+
+=== Aktivieren der Konfiguration
+
+Wir können die Konfiguration aktivieren mit:
+
+[source, bash]
+----
+sudo wpa_supplicant -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf
+----
+
+oder über:
+
+[source,bash]
+----
+ip l
+wpa_cli status
+----
+
+Wenn alles weiter funktioniert, sollten wir dann aber trotzdem noch einen sauberen Restart vornehmen mit:
+
+[source, bash]
+----
+sudo shutdown -r now
+----
+
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
+
 == USB - Mobile Festplatten einrichten
 
 (Quelle: https://raspberrytips.com/mount-usb-drive-raspberry-pi/)
@@ -252,7 +351,7 @@ Auf jeden Fall wird es schwierig wenn das automatische mounten kaputt ist.
 
 Im Notfall Eure Zeile wieder entfernen und prüfen ob es jetzt wieder geht.
 
-xref:../../index.adoc#content[Zurück zur Übersicht].
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
 == OS Upgrade (Stretch auf Buster)
 
@@ -267,7 +366,6 @@ cat /etc/os-release
 
 Hier sieht man, welches die nächste Version ist auf die Upgraded wird:
 https://en.wikipedia.org/wiki/Raspberry_Pi_OS
-
 
 === Pakete aktualisieren
 
@@ -357,4 +455,4 @@ Und zum Abschluss neu starten mit:
 sudo reboot
 ----
 
-
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
