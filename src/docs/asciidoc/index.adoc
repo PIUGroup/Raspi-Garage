@@ -1,9 +1,8 @@
 = Raspi-Garage
 Thomas Schubert (Huluvu424242) <huluvu424242@gmail.com>
 v1.0, {docdate}
+:keywords: raspi-garage,raspi,garage,raspberry,raspberry-pi,tutorial,DIYs
 :example-caption!:
-ifndef::imagesdir[:imagesdir: ./images]
-
 :Author:    Thomas Schubert (Huluvu424242) et. al
 :Email:     <huluvu424242@gmail.com>
 :toc-title: Inhaltsverzeichnis
@@ -11,9 +10,8 @@ ifndef::imagesdir[:imagesdir: ./images]
 :icons: font
 :sectnums:
 :xrefstyle: short
-
-
 :url-raspidoc: https://www.raspberrypi.com/documentation/
+ifndef::imagesdir[:imagesdir: ./images]
 
 == Quellen
 
