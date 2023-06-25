@@ -11,7 +11,8 @@ v1.0, {docdate}
 :sectnums:
 :xrefstyle: short
 :url-raspidoc: https://www.raspberrypi.com/documentation/
-ifndef::imagesdir[:imagesdir: ./images]
+:imagesdir: ./images
+// ifndef::imagesdir[:imagesdir: ./images]
 
 == Quellen
 
