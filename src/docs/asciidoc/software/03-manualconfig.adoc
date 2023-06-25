@@ -140,6 +140,7 @@ xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 == WLAN einrichten
 
 (Quelle: https://www.elektronik-kompendium.de/sites/raspberry-pi/1912221.htm)
+
 Die Eintragungen für das WLAN erfolgen in der Datei wpa_supplicant.conf während der Pi per Netzwerkkabel mit einem PC
 verbunden und gestartet ist:
 
