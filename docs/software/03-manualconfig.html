@@ -698,9 +698,24 @@ verbunden und gestartet ist:</p>
 update_config=1
 country=DE
 network={
-ssid="franken.freifunk.net"
-key_mgmt=NONE
-priority=1
+    ssid="franken.freifunk.net"
+    key_mgmt=NONE
+    priority=1
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>oder für ein eigenes WLAN nach diesem Beispiel:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=DE
+network={
+  ssid="FRITZ!Box 7490"
+  psk="password"
+  key_mgmt=WPA-PSK
 }</code></pre>
 </div>
 </div>
@@ -811,6 +826,15 @@ ob beim Verschlüsseln auf der Konsole irgendwelche Sonderzeichen Probleme berei
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">sudo wpa_supplicant -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>oder über:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">ip l
+wpa_cli status</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1057,7 +1081,7 @@ sudo apt dist-upgrade</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version Ausgabe 1.0.0-SNAPSHOT<br>
-Last updated 24.06.2023 
+Last updated 25.06.2023 
 </div>
 </div>
 </body>
