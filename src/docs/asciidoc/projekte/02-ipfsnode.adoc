@@ -2,7 +2,7 @@
 
 == IPFS Node erstellen
 
-=== Basis Image erstellen
+=== Basis Image aufspielen
 
 Um ein Basisimage zu erstellen gehen wir wie
 im Abschnitt xref:../software/02-images.adoc#installation-mittels-imager[Mit Imager erstellen und aufspielen] vor.
