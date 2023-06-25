@@ -2,6 +2,13 @@
 
 == IPFS Node erstellen
 
+=== Quellen
+
+* link:https://rossbulat.medium.com/orbitdb-deploying-the-distributed-ipfs-database-with-react-79afa1a7fabb[Verteilte Browserdatenbank aufsetzen]
+* link:https://rossbulat.medium.com/using-ipfs-cluster-service-for-global-ipfs-data-persistence-69a260a0711c[IPFS Cluster nutzen]
+* link:https://rossbulat.medium.com/introduction-to-ipfs-set-up-nodes-on-your-network-with-http-gateways-10e21ea689a4[IPFS Node aufsetzen]
+
+
 === Basis Image aufspielen
 
 Um ein Basisimage zu erstellen gehen wir wie
