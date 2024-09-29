@@ -91,6 +91,38 @@ sudo shutdown now
 cat /etc/os-release
 ----
 
+=== Zeitsynchronisationsfehler beheben
+Quelle: https://pimylifeup.com/raspberry-pi-time-sync/
+
+In seltenen Fällen stimmt die Uhzeit des Pi nicht. Folgendes Vorgehen habe ich dazu erprobt:
+
+1. Prüfen ob nicht der Windows Client die falsche Uhrzeit anzeigt (kommt öfter vor wenn länger nicht am Netz).
+Meist genügt dann "Rechtsklick" auf die Zeitanzeige, "Zeit neu setzen" und dort "Jetzt synchronisieren". Sonst
+einfach mal hier lesen: https://answers.microsoft.com/en-us/windows/forum/all/how-to-force-windows-10-time-to-synch-with-a-time/20f3b546-af38-42fb-a2d0-d4df13cc8f43
+
+2. Zeitsynchronisation lieber nochmal anschalten, sollte eigentlich per Default eingeschaltet sein:
+[source, bash]
+----
+sudo timedatectl set-ntp true
+----
+
+3. Einen Fallbackservice einrichten
+
+[source,bash]
+----
+nano ./etc/systemd/timesyncd.conf
+
+[Time]
+#NTP=
+FallbackNTP=time.nist.gov
+----
+
+4. Zeitservice neu starten
+[source,bash]
+----
+sudo systemctl restart systemd-timesyncd
+----
+
 === APT Lock entfernen
 
 Falls die Remote ssh Verbindung während der Installation abbricht muss man das Lock entfernen und neu aufsetzen.
