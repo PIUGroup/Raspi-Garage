@@ -454,6 +454,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#restart">Restart</a></li>
 <li><a href="#halt">Halt</a></li>
 <li><a href="#os-version-ermitteln-2">OS Version ermitteln</a></li>
+<li><a href="#zeitsynchronisationsfehler-beheben">Zeitsynchronisationsfehler beheben</a></li>
 <li><a href="#apt-lock-entfernen">APT Lock entfernen</a></li>
 <li><a href="#allgemeine-konfiguration-ändern">Allgemeine Konfiguration ändern</a></li>
 <li><a href="#file-transfer">File Transfer</a></li>
@@ -618,6 +619,60 @@ sudo apt upgrade</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">cat /etc/os-release</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="zeitsynchronisationsfehler-beheben"><a class="anchor" href="#zeitsynchronisationsfehler-beheben"></a>Zeitsynchronisationsfehler beheben</h3>
+<div class="paragraph">
+<p>Quelle: <a href="https://pimylifeup.com/raspberry-pi-time-sync/" class="bare">https://pimylifeup.com/raspberry-pi-time-sync/</a></p>
+</div>
+<div class="paragraph">
+<p>In seltenen Fällen stimmt die Uhzeit des Pi nicht. Folgendes Vorgehen habe ich dazu erprobt:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Prüfen ob nicht der Windows Client die falsche Uhrzeit anzeigt (kommt öfter vor wenn länger nicht am Netz).
+Meist genügt dann "Rechtsklick" auf die Zeitanzeige, "Zeit neu setzen" und dort "Jetzt synchronisieren". Sonst
+einfach mal hier lesen: <a href="https://answers.microsoft.com/en-us/windows/forum/all/how-to-force-windows-10-time-to-synch-with-a-time/20f3b546-af38-42fb-a2d0-d4df13cc8f43" class="bare">https://answers.microsoft.com/en-us/windows/forum/all/how-to-force-windows-10-time-to-synch-with-a-time/20f3b546-af38-42fb-a2d0-d4df13cc8f43</a></p>
+</li>
+<li>
+<p>Zeitsynchronisation lieber nochmal anschalten, sollte eigentlich per Default eingeschaltet sein:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo timedatectl set-ntp true</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Einen Fallbackservice einrichten</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">nano ./etc/systemd/timesyncd.conf
+
+[Time]
+#NTP=
+FallbackNTP=time.nist.gov</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Zeitservice neu starten</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo systemctl restart systemd-timesyncd</pre>
 </div>
 </div>
 </div>
@@ -1083,7 +1138,7 @@ sudo apt dist-upgrade</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version Ausgabe 1.0.0-SNAPSHOT<br>
-Last updated 25.06.2023 
+Last updated 29.09.2024 
 </div>
 </div>
 </body>
