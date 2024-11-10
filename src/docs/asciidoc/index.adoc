@@ -7,6 +7,9 @@ v1.0, {docdate}
 :Email:     <huluvu424242@gmail.com>
 :toc-title: Inhaltsverzeichnis
 :toc:
+:imagesdir: ./images
+[.text-center]
+image::RaspiGarage.webp[Raspi Garage,1024,1024]
 :icons: font
 :sectnums:
 :xrefstyle: short
