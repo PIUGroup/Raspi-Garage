@@ -11,8 +11,10 @@ v1.0, {docdate}
 :sectnums:
 :xrefstyle: short
 :url-raspidoc: https://www.raspberrypi.com/documentation/
-:imagesdir: ./images
 // ifndef::imagesdir[:imagesdir: ./images]
+:imagesdir: ./images
+.Bild generiert via ChatGPT am 10.11.2024, Es zeigt eine Werkstatt mit Raspberry PIs
+image::RaspiGarage.webp[Raspi Garage,1024,1024]
 
 == Quellen
 
