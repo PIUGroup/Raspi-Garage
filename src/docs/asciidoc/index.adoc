@@ -8,7 +8,7 @@ v1.0, {docdate}
 :toc-title: Inhaltsverzeichnis
 :toc:
 :imagesdir: ./images
-[.text-center]
+.Bild generiert via ChatGPT am 10.11.2024
 image::RaspiGarage.webp[Raspi Garage,1024,1024]
 :icons: font
 :sectnums:
