@@ -61,8 +61,8 @@ Zur Verkleinerung einer abgelegten Imagedatei
 
 xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
-[reftext="Nachkonfiguration"]
-== Nachkonfiguration auf dem PI
+[reftext="AllgemeineKonfiguration"]
+== Allgemeine Konfiguration auf dem PI
 
 === Immer zu Beginn
 
