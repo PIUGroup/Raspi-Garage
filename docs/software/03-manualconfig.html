@@ -471,6 +471,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#usb-mobile-festplatten-einrichten">USB - Mobile Festplatten einrichten</a></li>
+<li><a href="#samba-freigaben-einrichten">Samba Freigaben einrichten</a></li>
 <li><a href="#os-upgrade-stretch-auf-buster">OS Upgrade (Stretch auf Buster)</a>
 <ul class="sectlevel2">
 <li><a href="#os-version-ermitteln-3">OS Version ermitteln</a></li>
@@ -590,7 +591,7 @@ vergrößert werden.</p>
 <h2 id="basis-konfiguration-ändern"><a class="anchor" href="#basis-konfiguration-ändern"></a>Basis Konfiguration ändern</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Dieses Skript führt die allgemeine Konfiguration auf dem Pi aus. Hier werden sowas wie Sprache, Zeitzone,
+<p>Dieses Skript führt die grundlegende Konfiguration auf dem Pi aus. Hier werden sowas wie Sprache, Zeitzone,
 Tastaturlayout etc. festgelegt:</p>
 </div>
 <div class="listingblock">
@@ -1003,6 +1004,108 @@ Auf jeden Fall wird es schwierig wenn das automatische mounten kaputt ist.</p>
 </div>
 <div class="paragraph">
 <p>Im Notfall Eure Zeile wieder entfernen und prüfen ob es jetzt wieder geht.</p>
+</div>
+<div class="paragraph">
+<p><a href="../index.html#softwareübersicht">Zurück zur Übersicht</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="samba-freigaben-einrichten"><a class="anchor" href="#samba-freigaben-einrichten"></a>Samba Freigaben einrichten</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>(Quelle: <a href="https://www.raspberry-buy.de/Raspberry_Pi_Tutorial_Windows_Dateifreigabe_Samba_SMB_Server_Installation.html" class="bare">https://www.raspberry-buy.de/Raspberry_Pi_Tutorial_Windows_Dateifreigabe_Samba_SMB_Server_Installation.html</a>)</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Pakete installieren</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo apt-get install samba samba-common smbclient (enter)</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Reboot</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo reboot</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Status Samba Service prüfen</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo service smbd status (enter)</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Einen Share konfigurieren
+Einen neuen Bereich am Ende der Samba Konfigurationsdatei erstellen der wie das Share heißt (hier ablagen) und sich nicht
+mit bestehenden widersprechen darf.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo nano /etc/samba/smb.conf (enter)
+:
+[ablagen]
+   comment = RW Share für Resilio Sync Zugriffe
+   path = /mnt/usb/
+   read only = no
+   browseable = yes
+   create mask = 0777</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Samba Service neu starten</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo service smbd restart (enter)
+sudo service nmbd restart (enter)</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Samba Nutzer anlegen</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo smbpasswd -a pi (enter)</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Das Share nutzen
+Unter Windows Rechtsklick auf "Mein PC" dann "Netzlaufwerk verbinden" und "Mit anderer Identität anmelden" auswählen.
+Das Share ablagen für den Host pisync würde so als Path eigegeben werden: \\pisync\ablagen</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p><a href="../index.html#softwareübersicht">Zurück zur Übersicht</a>.</p>
