@@ -63,7 +63,7 @@ xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
 == Basis Konfiguration ändern
 
-Dieses Skript führt die allgemeine Konfiguration auf dem Pi aus. Hier werden sowas wie Sprache, Zeitzone,
+Dieses Skript führt die grundlegende Konfiguration auf dem Pi aus. Hier werden sowas wie Sprache, Zeitzone,
 Tastaturlayout etc. festgelegt:
 
 [source,bash]
