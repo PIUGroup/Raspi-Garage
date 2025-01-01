@@ -386,6 +386,56 @@ Im Notfall Eure Zeile wieder entfernen und prüfen ob es jetzt wieder geht.
 
 xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
+== Samba Freigaben einrichten
+
+(Quelle: https://www.raspberry-buy.de/Raspberry_Pi_Tutorial_Windows_Dateifreigabe_Samba_SMB_Server_Installation.html)
+
+1. Pakete installieren
+[source,bash]
+----
+sudo apt-get install samba samba-common smbclient (enter)
+----
+2. Reboot
+[source,bash]
+----
+sudo reboot
+----
+3. Status Samba Service prüfen
+[source,bash]
+----
+sudo service smbd status (enter)
+----
+4. Einen Share konfigurieren
+Einen neuen Bereich am Ende der Samba Konfigurationsdatei erstellen der wie das Share heißt (hier ablagen) und sich nicht
+mit bestehenden widersprechen darf.
+[source,conf]
+----
+sudo nano /etc/samba/smb.conf (enter)
+:
+[ablagen]
+   comment = RW Share für Resilio Sync Zugriffe
+   path = /mnt/usb/
+   read only = no
+   browseable = yes
+   create mask = 0777
+----
+5. Samba Service neu starten
+[source,bash]
+----
+sudo service smbd restart (enter)
+sudo service nmbd restart (enter)
+----
+6. Samba Nutzer anlegen
+[source,bash]
+----
+sudo smbpasswd -a pi (enter)
+----
+7. Das Share nutzen
+Unter Windows Rechtsklick auf "Mein PC" dann "Netzlaufwerk verbinden" und "Mit anderer Identität anmelden" auswählen.
+Das Share ablagen für den Host pisync würde so als Path eigegeben werden: \\pisync\ablagen
+
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
+
 == OS Upgrade (Stretch auf Buster)
 
 (Quelle: https://pimylifeup.com/upgrade-raspbian-stretch-to-raspbian-buster/)
