@@ -15,7 +15,6 @@ image::RaspiGarage.webp[Raspi Garage,1024,1024]
 :sectnums:
 :xrefstyle: short
 :url-raspidoc: https://www.raspberrypi.com/documentation/
-:imagesdir: ./images
 
 == Quellen
 
