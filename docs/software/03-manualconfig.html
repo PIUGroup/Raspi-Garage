@@ -447,7 +447,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#ssh-aktivieren">SSH aktivieren</a></li>
 <li><a href="#os-version-ermitteln">OS Version ermitteln</a></li>
 <li><a href="#remote-backup-vom-pi-als-image-ziehen">Remote Backup vom Pi als Image ziehen</a></li>
-<li><a href="#pi-image-verkleinern">Pi Image verkleinern</a></li>
+<li><a href="#pi-image-verkleinern">Pi Image verkleinern</a>
+<ul class="sectlevel2">
+<li><a href="#basis-konfiguration-ändern">Basis Konfiguration ändern</a></li>
+</ul>
+</li>
 <li><a href="#allgemeine-konfiguration-auf-dem-pi">Allgemeine Konfiguration auf dem PI</a>
 <ul class="sectlevel2">
 <li><a href="#immer-zu-beginn">Immer zu Beginn</a></li>
@@ -456,7 +460,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#os-version-ermitteln-2">OS Version ermitteln</a></li>
 <li><a href="#zeitsynchronisationsfehler-beheben">Zeitsynchronisationsfehler beheben</a></li>
 <li><a href="#apt-lock-entfernen">APT Lock entfernen</a></li>
-<li><a href="#allgemeine-konfiguration-ändern">Allgemeine Konfiguration ändern</a></li>
 <li><a href="#file-transfer">File Transfer</a></li>
 </ul>
 </li>
@@ -584,6 +587,21 @@ vergrößert werden.</p>
 <div class="paragraph">
 <p><a href="../index.html#softwareübersicht">Zurück zur Übersicht</a>.</p>
 </div>
+<div class="sect2">
+<h3 id="basis-konfiguration-ändern"><a class="anchor" href="#basis-konfiguration-ändern"></a>Basis Konfiguration ändern</h3>
+<div class="paragraph">
+<p>Dieses Skript führt die allgemeine Konfiguration auf dem Pi aus. Hier werden sowas wie Sprache, Zeitzone,
+Tastaturlayout etc. festgelegt:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">/usr/bin/raspi-config</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="../index.html#softwareübersicht">Zurück zur Übersicht</a>.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -694,21 +712,6 @@ Es sind genau 2 Lock Dateien zu löschen</p>
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">sudo dpkg --configure -a</code></pre>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="allgemeine-konfiguration-ändern"><a class="anchor" href="#allgemeine-konfiguration-ändern"></a>Allgemeine Konfiguration ändern</h3>
-<div class="paragraph">
-<p>Dieses Skript führt die allgemeine Konfiguration auf dem Pi aus. Hier werden sowas wie Sprache, Zeitzone,
-Tastaturlayout etc. festgelegt:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">/usr/bin/raspi-config</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><a href="../index.html#softwareübersicht">Zurück zur Übersicht</a>.</p>
 </div>
 </div>
 <div class="sect2">
