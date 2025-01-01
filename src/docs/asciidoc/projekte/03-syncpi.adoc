@@ -1,0 +1,73 @@
+:imagesdir: ./images
+
+== Aufbau eines PI Sync
+
+=== Quellen
+
+* link:https://xxx[Resilio Sync auf PI aufsetzen - invalider Link]
+
+=== Ziel
+
+Die im Laufe des Lebens erwobenen Informationen wie eBooks, mp3 Alben, Videos und allerlei eingescannte Dokumente für die
+Steuererklärungen oder die Befunde der ärztlichen Untersuchungen, sollen an einer Stelle gespeichert,
+ausgelesen und idealerweise beim Crash von Festplatten auch schnell wieder hergestellt werden können.
+
+Die Aufgabe wäre eine typische Aufgabe für ein NAS. Das NAS der Fritzbox ist aber zu langsam, da die CPU schwach ist
+und eigentlich auch schon mit den Routeraufgaben voll zu tun hat. Einen RAID Server aufzubauen schien mir zu teuer und
+mit Kanonen auf Spatzen geschossen. Also muss es ein Raspi schaffen - zumindest am Anfang.
+
+Da ich das System bereits aufgebaut habe, beschreibe ich hier eigentlich nur die Historie wie ich zu meinem aktuellen
+System gekommen bin. Angefangen habe ich mit einem kompletten Raspi, einer mobilen 5 GB USB Festplatte und der Software
+link:https://www.resilio.com/sync/[Resilio Sync].
+
+Die erste Idee war, einen Raspi mit einer Festplatte zu haben auf der alles
+landet und dann diverse Clients wie Laptop, Handy oder Tablet, welche Daten und Informationen generieren und lokal im
+Filesystem speichern. Über Resilio Sync sollen diese abgelegten Daten dann mit der Festplatte des Raspi synchronisiert
+werden, so dass auf allen Geräten immer der gleiche Stand ist.
+
+Die zweite Idee war, die Informationen nach Inhalten zu gliedern und je Inhaltsart ein Verzeichnis auf der HDD des Raspi
+von Resilo verwalten zu lassen. Das führte bei mir zu folgender fachlichen Aufteilung bzw. zu folgenden Verzeichnissen
+mit Synchronisation:
+
+books-sync:: Hier liegen meine eBooks ab. Für die Ordnung im Verzeichnis sorgt Calibre. Ich habe es so organisiert,
+dass dies das Verzeichnis ist, welches Calibre als lokale Datenbank nutzt.
+
+music-sync:: Hier liegen meine mp3s ab. Damit im Verzeichnis selbst Ordnung herrscht, nutze ich
+link:https://udse.de/audioexpert/[AudioExpert] in einer lizenzierten Version
+(lizensiert weil meine Anzahl ein hohes Limit überschritten hat).
+
+filme-sync:: Hier liegen Filme und Videos ab, die entweder gekauft oder privater Natur (also selbst aufgenommen) sind.
+Ich bevorzuge dabei das link:https://de.wikipedia.org/wiki/DVD-Video[DVD-Video] Format. Es ist zwar das älteste,
+funktioniert aber gut auf dem vlc Player und man hat die wenigsten Copyright Probleme, da man hier noch
+private Kopien ziehen konnte ohne Sperren umgehen zu müssen (Private Anmerkung: Aktuelle DVDs oder Blue rays sind
+eine Frechheit, da kaufe ich die DVD und dann kann ich sie am PC nicht schauen weil ich sie nicht digitalisiert
+bekomme wegen Kopierschutz. Ich kenne keinen Laptop mehr mit DVD Device und zum Schauen will ich doch das nicht
+extra anstecken etc. Da braucht sich keiner wundern wenn alle streamen. Von wegen der Mensch ist so faul geworden -
+nein die Industrie ist so gierig geworden!)
+
+ablage-sync:: Verzeichnis in dem ich alle möglichen Dokumente aufbewahre. Von Verträgen der neuen Mobilfunkanbieter,
+bis zu ärtzlichen Gutachten sowie Notizen zu Zählerständen etc.
+
+Anhand der Daten sieht man vielleicht schon, dass man solch einen PI nicht unbedingt für die Nutzung aus dem Internet
+freigeben sollte. Konkret habe ich mein Netzwerk abgeschottet und nicht eine Portweiterleitung erstellt. Vom Handy
+kommt man trotzdem drauf. Die Lösung ist VPN. Ist das Handy Teil des eigenen Netzes, muss nix freigegeben werden. Das
+VPN lässt sich schnell, einfach und sicher über den Fritzbox Router mittels WireGuard und der WireGuard App auf dem
+Client aufbauen.
+
+
+=== Architektur Aufbau
+
+
+
+
+=== Resilio Sync
+
+Resilio Sync habe ich damals in der Version Resilio Sync 2.5.12 (1191) auf meinen Raspi installiert
+und dort auch nicht weiter aktualisiert - das wäre ein zukünftiger nächster Schritt. In der gleichen
+Version habe ich Resilio auch auf meinem Windows Laptop installiert. In den Versionen brauchte man noch
+keine Lizenz. Inzwischen habe ich die Windows Version aktualisiert und besitze nun eine Lizenz. Da es schon
+wieder eine Zeit her ist und sich das Lizenzmodell damals geändert hat, kann ich nicht mehr sagen ob ich Geld
+dafür bezahlt habe. Falls ja, dann sehr wenig, denn ich habe es mir nirgends notiert oder von der Steuer
+abgesetzt.
+
+
