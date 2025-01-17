@@ -26,6 +26,21 @@ cat /etc/os-release
 
 xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
+== Remote Folder vom Pi lokal sichern
+
+Verzeichnisse vom Pi lassen sich von Windows aus bequem ins lokale Win Dateisystem unter Hilfe der gitbash kopieren.
+
+[source,bash]
+----
+ scp -r pi@pisync:/mnt/usb/* ./$(date +%Y%m%d-%H%M%S)/
+----
+
+Dieser Bash Befehl kopiert alle Dateien und Verzeichnisse vom Pi die dort unter /mnt/usb liegen.
+Das könnten z.B. alle synchronisierten Resilio Sync Verzeichnisse sein.
+
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
+
+
 == Remote Backup vom Pi als Image ziehen
 
 (Quelle: https://pixelfriedhof.com/en/remote-backup-your-raspberry-pi-with-ssh-via-terminal/)
