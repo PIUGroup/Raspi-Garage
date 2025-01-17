@@ -446,6 +446,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#konfigurationen">Konfigurationen</a></li>
 <li><a href="#ssh-aktivieren">SSH aktivieren</a></li>
 <li><a href="#os-version-ermitteln">OS Version ermitteln</a></li>
+<li><a href="#remote-folder-vom-pi-lokal-sichern">Remote Folder vom Pi lokal sichern</a></li>
 <li><a href="#remote-backup-vom-pi-als-image-ziehen">Remote Backup vom Pi als Image ziehen</a></li>
 <li><a href="#pi-image-verkleinern">Pi Image verkleinern</a></li>
 <li><a href="#basis-konfiguration-ändern">Basis Konfiguration ändern</a></li>
@@ -523,6 +524,26 @@ Gitbash oder Total Commander sind Euer Freund.</p>
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">cat /etc/os-release</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p><a href="../index.html#softwareübersicht">Zurück zur Übersicht</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="remote-folder-vom-pi-lokal-sichern"><a class="anchor" href="#remote-folder-vom-pi-lokal-sichern"></a>Remote Folder vom Pi lokal sichern</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Verzeichnisse vom Pi lassen sich von Windows aus bequem ins lokale Win Dateisystem unter Hilfe der gitbash kopieren.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"> scp -r pi@pisync:/mnt/usb/* ./$(date +%Y%m%d-%H%M%S)/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Dieser Bash Befehl kopiert alle Dateien und Verzeichnisse vom Pi die dort unter /mnt/usb liegen.
+Das könnten z.B. alle synchronisierten Resilio Sync Verzeichnisse sein.</p>
 </div>
 <div class="paragraph">
 <p><a href="../index.html#softwareübersicht">Zurück zur Übersicht</a>.</p>
@@ -1243,7 +1264,7 @@ sudo apt dist-upgrade</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version Ausgabe 1.0.0-SNAPSHOT<br>
-Last updated 01.01.2025 
+Last updated 17.01.2025 
 </div>
 </div>
 </body>
