@@ -37,6 +37,10 @@ Verzeichnisse vom Pi lassen sich von Windows aus bequem ins lokale Win Dateisyst
 
 Dieser Bash Befehl kopiert alle Dateien und Verzeichnisse vom Pi die dort unter /mnt/usb liegen.
 Das könnten z.B. alle synchronisierten Resilio Sync Verzeichnisse sein.
+Allerdings dauert dies sehr lange, so dass ggf. ein Timeout zuschlägt und die Verbindung getrennt wird bevor alles
+kopiert wurde. Daher ist es sinnvoller ein Kommando zu verwenden, welches erst auf dem Pi alles packt und dann die eine
+Archivdatei am Stück überträgt. Verkleinert auch die Backupstände - ist also deutlich sinnvoller als diese
+Art des Kopierens hier.
 
 xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
