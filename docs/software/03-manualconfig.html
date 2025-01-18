@@ -543,7 +543,11 @@ Gitbash oder Total Commander sind Euer Freund.</p>
 </div>
 <div class="paragraph">
 <p>Dieser Bash Befehl kopiert alle Dateien und Verzeichnisse vom Pi die dort unter /mnt/usb liegen.
-Das könnten z.B. alle synchronisierten Resilio Sync Verzeichnisse sein.</p>
+Das könnten z.B. alle synchronisierten Resilio Sync Verzeichnisse sein.
+Allerdings dauert dies sehr lange, so dass ggf. ein Timeout zuschlägt und die Verbindung getrennt wird bevor alles
+kopiert wurde. Daher ist es sinnvoller ein Kommando zu verwenden, welches erst auf dem Pi alles packt und dann die eine
+Archivdatei am Stück überträgt. Verkleinert auch die Backupstände - ist also deutlich sinnvoller als diese
+Art des Kopierens hier.</p>
 </div>
 <div class="paragraph">
 <p><a href="../index.html#softwareübersicht">Zurück zur Übersicht</a>.</p>
@@ -1264,7 +1268,7 @@ sudo apt dist-upgrade</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version Ausgabe 1.0.0-SNAPSHOT<br>
-Last updated 17.01.2025 
+Last updated 18.01.2025 
 </div>
 </div>
 </body>
