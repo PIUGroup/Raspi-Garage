@@ -2,6 +2,8 @@
 
 == Aufbau eines PI Sync
 
+Aktuelle Anleitung: https://docs.google.com/document/d/1e8PSpYmB3lB-aiP_I1Ctmw6ml3CtudAvyRwGx4Q4UPc/edit?tab=t.0
+
 === Quellen
 
 * link:https://xxx[Resilio Sync auf PI aufsetzen - invalider Link]
