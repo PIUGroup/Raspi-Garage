@@ -449,6 +449,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#ziel">Ziel</a></li>
 <li><a href="#architektur-aufbau">Architektur Aufbau</a></li>
 <li><a href="#resilio-sync">Resilio Sync</a></li>
+<li><a href="#pi-mit-resilio-sync-aufsetzen">Pi mit Resilio Sync aufsetzen</a></li>
 </ul>
 </li>
 </ul>
@@ -486,7 +487,8 @@ mit Kanonen auf Spatzen geschossen. Also muss es ein Raspi schaffen - zumindest 
 <div class="paragraph">
 <p>Da ich das System bereits aufgebaut habe, beschreibe ich hier eigentlich nur die Historie wie ich zu meinem aktuellen
 System gekommen bin. Angefangen habe ich mit einem kompletten Raspi, einer mobilen 5 GB USB Festplatte und der Software
-<a href="https://www.resilio.com/sync/">Resilio Sync</a>.</p>
+<a href="https://www.resilio.com/sync/">Resilio Sync</a>, einer Software basierend auf dem Bittorrent Protokoll und geschaffen von der Firma die auch Bittorrent und μTorrent erschaffen haben. Also einer Software die ihrer Historie nach schon für
+Qualtität stand.</p>
 </div>
 <div class="paragraph">
 <p>Die erste Idee war, einen Raspi mit einer Festplatte zu haben auf der alles
@@ -537,10 +539,18 @@ kommt man trotzdem drauf. Die Lösung ist VPN. Ist das Handy Teil des eigenen Ne
 VPN lässt sich schnell, einfach und sicher über den Fritzbox Router mittels WireGuard und der WireGuard App auf dem
 Client aufbauen.</p>
 </div>
+<div class="paragraph">
+<p>Die genannten Ordner waren nur die ersten. Inzwischen habe ich ca. 20 Ordner in der Synchronisation und sowohl die
+Datenkategorien als auch die Daten selber scheinen im Laufe des Lebens immer weiter anzuwachsen. Letzteres erscheint
+verständlich wenn man sich überlegt, dass es eBooks bereits in den 90ern gab und mp3 also Musik erst in den 2000ern als
+neue Kategorie dazu kam. Auf diese Art &amp; Weise werden uns auch in neuen Jahrzenten noch weitere Kategorien beglücken.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="architektur-aufbau"><a class="anchor" href="#architektur-aufbau"></a>Architektur Aufbau</h3>
-
+<div class="paragraph">
+<p>TODO: kleines Bildchen was zeigt wie die Nodes und Devices im Netzwerk zusammenarbeiten und wer welche Aufgabe hat.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="resilio-sync"><a class="anchor" href="#resilio-sync"></a>Resilio Sync</h3>
@@ -552,6 +562,214 @@ keine Lizenz. Inzwischen habe ich die Windows Version aktualisiert und besitze n
 wieder eine Zeit her ist und sich das Lizenzmodell damals geändert hat, kann ich nicht mehr sagen ob ich Geld
 dafür bezahlt habe. Falls ja, dann sehr wenig, denn ich habe es mir nirgends notiert oder von der Steuer
 abgesetzt.</p>
+</div>
+<div class="paragraph">
+<p>Während ich an diesem Artikel schreibe ist wieder Zeit ins Land gegangen und ich habe versucht den Pi zu aktualisieren.
+Das ging diesmal gründlich schief - er startete nicht mehr. Wenn ich im Nachgang darüber nachdenke kann es einfach
+daran gelegen haben, dass ich die USB Platte aus Angst vor Schäden abgezogen hatte wärend des Upgrades, aber da bin ich
+leider erst drauf gekommen als ich den Pi komplett frisch mit der Version Bookworm des OS aufgesetzt habe. Dabei ist mir
+aufgefallen, dass er ohne Platte nicht starten kann, da ich ja die Platte für das Automounten in der /etc/fstab
+eingetragen hatte. Aber egal, jetzt mal endlich zur Sache wie ich den aktuellen Pi aufgesetzt habe.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pi-mit-resilio-sync-aufsetzen"><a class="anchor" href="#pi-mit-resilio-sync-aufsetzen"></a>Pi mit Resilio Sync aufsetzen</h3>
+<div class="sect3">
+<h4 id="standard-image-aufspielen"><a class="anchor" href="#standard-image-aufspielen"></a>Standard Image aufspielen</h4>
+<div class="paragraph">
+<p>Hierzu einfach den Raspberry Pi Imager auf einem Windows Host installieren und eine SD Karte mit dem neusten OS
+bespielen. Dieser Pi soll nur für Resilio Sync als Read/Write Server mit Netzwerkshares im Heimnetz dienen, daher
+wählen wir unter sonstigen Images die Variante "Raspberry Pi OS Lite (64-bit) A Port of Debian Bookworm with no
+desktop environment (Compatible with Raspberry Pi 3/4/400/5)". Von der Hardware her nutze ich einen Raspi 4 mit einem
+Gehäuse welches 2 Lüfter beinhaltet und bei dem  mindestens 3 Kühlkörper im Inneren verklebt sind. Irgendwann in der
+Zukunft will ich die Lüfter loswerden - ich hoffe es geht mit einem Flirc Gehäuse aus Alu aber probiert habe ich es
+noch nicht.</p>
+</div>
+<div class="paragraph">
+<p>Über den Imager ist man in der Lage gleich die Grundkonfigurationen durchzuführen, Locale, Zeitzone, Tastaturlayout,
+WLAN und weitere Dinge - hier sollte man so viel wie möglich gleich vorkonfigurieren.
+Wenn das Image aufgespielt ist, kann man es in den Pi tun und diesen starten.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="mit-dem-pi-verbinden"><a class="anchor" href="#mit-dem-pi-verbinden"></a>Mit dem Pi verbinden</h4>
+<div class="paragraph">
+<p>Am Pi wird weder Monitor noch Tastatur oder Maus benötigt. Wir erledigen alle Aufgaben in dem wir uns von Windows aus
+in der gitbash über ssh mit dem pi verbinden.</p>
+</div>
+<div class="paragraph">
+<p>Dazu schauen wir zunächst mal in der Fritz Box auf welcher IP Adresse der Pi läuft. Einmal dort, legen wir auch gleich
+fest, dass dieses Gerät immer die gleiche IP bekommen soll. Wem das zu kompliziert ist oder wer keine Fritz Box nutzt,
+der konfiguriert im Imager einfach einen guten und einfachen Namen unter Hostname z.B. pisync (.local) und findet
+einfach über ping heraus welche ip der Pi hat:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">ping -4 pisync
+
+Ping wird ausgef▒hrt f▒r pisync.fritz.box [192.168.178.29] mit 32 Bytes Daten:
+Antwort von 192.168.178.29: Bytes=32 Zeit=12ms TTL=64
+Antwort von 192.168.178.29: Bytes=32 Zeit=15ms TTL=64
+Antwort von 192.168.178.29: Bytes=32 Zeit=12ms TTL=64
+Antwort von 192.168.178.29: Bytes=32 Zeit=14ms TTL=64</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Den Parameter -4 nutze ich um im IP4 Adressraum zu bleiben auch wenn der Pi vermutlich eine IP6 Adresse nutzt.
+(Wie oben erwähnt trägt mein Pi den Namen pisync)
+In der Antwort wird die IP4 Adresse aufgelistet und diese nutzen wir nun zum Verbinden. (Weil ich keine Erfahrung mit
+IP6 habe, nutze ich immer noch IP4 Tools aber wer sich mit IP6 auskennt, kann gern darüber gehen)</p>
+</div>
+<div class="paragraph">
+<p>Jetzt also auf den Pi verbinden mit:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">ssh pi@192.168.178.29
+&lt;Passwort eingeben wenn Prompt dazu auffordert&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Das pi vor dem @ ist der 'root' Nutzer des Pi und die Zahlen hinter dem @ sind die oben per ping ermittelte IP Adresse des
+pi.  Nach der Eingabe des Passwortes sollten wir eingeloggt sein und uns unter /home/pi befinden. Also im Home des
+Nutzers pi, welcher auch sudo Rechte besitzen sollte.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="software-aktualisieren"><a class="anchor" href="#software-aktualisieren"></a>Software aktualisieren</h4>
+<div class="paragraph">
+<p>Wie immer bevor wir etwas installieren, bringen wir das gesamte System auf den neusten Stand und booten neu
+um sicher zu stellen, dass alles geht.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo apt-get update
+sudo apt-get upgrade
+sudo shutdown -r now</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Anschließend wieder per ssh neu einloggen:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">ssh pi@&lt;ip-adresse&gt;
+&lt;Passwort eingeben wenn Prompt dazu auffordert&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="paketquellen-erweitern"><a class="anchor" href="#paketquellen-erweitern"></a>Paketquellen erweitern</h4>
+<div class="paragraph">
+<p>Da Resilio Sync kein Standard Package in Debian ist und scheinbar nicht in der Distribution enthalten, müssen wir
+dem System erstmal erklären wo es die Pakete zur Installation von Resilio findet. Das machen wir, indem wir die
+Source Listen anpassen. Leider hat sich die Lokation in den letzten Jahren oft geändert aber aus meiner Sicht wird
+es immer einheitlicher, so dass die aktuellen URLs vermutlich schon deutlich stabiler sein werden als die davor.</p>
+</div>
+<div class="paragraph">
+<p>Um die Sourcen für Resilio Sync dem System hinzuzufügen, erstellen wir eine Datei resilio-sync.list mit folgendem Kommando:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo nano /etc/apt/sources.list.d/resilio-sync.list</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Als Inhalt geben wir eine Zeile ein:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>deb <a href="http://linux-packages.resilio.com/resilio-sync/deb" class="bare">http://linux-packages.resilio.com/resilio-sync/deb</a> resilio-sync non-free</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>Wie für den Nano Editor üblich Speichern wir mit Ctrl+O und Enter und Verlassen ihn wieder mit Ctrl+X.</p>
+</div>
+<div class="paragraph">
+<p>Damit sind die Quellen bekannt, werden vom System aber abgelehnt, da nicht als sicher eingestuft.
+Also installieren wir noch die Schlüssel mit denen die Echtheit der Quellen vom System geprüft werden kann.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">wget -qO - https://linux-packages.resilio.com/resilio-sync/key.asc | sudo apt-key add -</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Fragt mich nicht nach Details aber die - Zeichen sind wichtig. Typische bash Magie.
+Aktuell erscheint eine Warnung, dass es mal wieder ein neues System zum Verifizieren der Quellen gibt. Mir als Nutzer
+ist das Brust, denn davon verstehe ich eh nix. Eins ist aber klar in ein paar Jahren wird das so nicht mehr gehen.
+Die Warnung lautet irgendwas in diese Richtung:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>deprecated &#8594; man apt-key(8) &#8594; trusted.gpg.d</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>Nachdem wir die Quellen aufgenommen und die Keys hinzugefügt haben, können wir mal wieder aktualiseren:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo apt-get update</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Zur Belohnung kennt das System jetzt die Pakete und wir können Resilio Sync installieren:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo apt-get install resilio-sync</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Anschließend aktivieren wir die Systemsteuerung für den Hintergrunddienst (Service) von Resilio:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo systemctl enable resilio-sync</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Und starten nun den Service über:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo service resilio-sync start</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ob er läuft können wir prüfen über: <a href="https://pisync:8888/gui/" class="bare">https://pisync:8888/gui/</a>
+Hier müsst ihr pisync durch Eurem Hostname des Pi oder dessen IP Adresse ersetzen.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="lizenz-übertragen"><a class="anchor" href="#lizenz-übertragen"></a>Lizenz übertragen</h4>
+<div class="paragraph">
+<p>Falls ihr in Besitz einer Resilio Lizenz seid, könnt ihr diese vom Windows Rechner in einer neuen gitbash wie folgt
+an den Pi übertragen:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"> scp ./Resilio\ Sync.btskey pi@pisync:/home/pi/Resilio\ Sync.btskey
+&lt;Passwort eingeben für pi&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Die \ benötige ich, da meine Lizenzdatei ein Leerzeichen enthält und das für die Bash geqoutet werden muss. Auf dem
+Windows Rechner von dem aus ich den Befehl absetze, liegt die Lizenzdatei direkt in dem Folder in dem ich mich beim
+Eingeben des Kommandos befinde. Daher der ./ vor dem Dateinamen. Ziel auf dem Pi ist das Verzeichnis /home/pi.
+Nimm kein anderes, da man immer auch Rechte zum Schreiben braucht. Es gehen also nur Zielverzeichnisse auf die der pi
+Nutzer ohne sudo schreiben darf.</p>
+</div>
+<div class="paragraph">
+<p>Leider kann Resilio nicht aus /home/pi lesen, weil es dazu keine Rechte besitzt. Also schnell wieder auf en Pi angemeldet
+oder die noch offene andere gitbash genutzt und die Lizenzdatei ein Verzeichnis höher geschoben unter /home. Von dort
+kann die UI Oberfläche von Resilio im Browser die Lizenzdatei einlesen.</p>
+</div>
 </div>
 </div>
 </div>
