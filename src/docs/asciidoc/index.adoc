@@ -7,14 +7,14 @@ v1.0, {docdate}
 :Email:     <huluvu424242@gmail.com>
 :toc-title: Inhaltsverzeichnis
 :toc:
-:icons: font
-:sectnums:
-:xrefstyle: short
-:url-raspidoc: https://www.raspberrypi.com/documentation/
 // ifndef::imagesdir[:imagesdir: ./images]
 :imagesdir: ./images
 .Bild generiert via ChatGPT am 10.11.2024, Es zeigt eine Werkstatt mit Raspberry PIs
 image::RaspiGarage.webp[Raspi Garage,1024,1024]
+:icons: font
+:sectnums:
+:xrefstyle: short
+:url-raspidoc: https://www.raspberrypi.com/documentation/
 
 == Quellen
 

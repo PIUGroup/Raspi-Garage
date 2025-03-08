@@ -26,6 +26,25 @@ cat /etc/os-release
 
 xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
+== Remote Folder vom Pi lokal sichern
+
+Verzeichnisse vom Pi lassen sich von Windows aus bequem ins lokale Win Dateisystem unter Hilfe der gitbash kopieren.
+
+[source,bash]
+----
+ scp -r pi@pisync:/mnt/usb/* ./$(date +%Y%m%d-%H%M%S)/
+----
+
+Dieser Bash Befehl kopiert alle Dateien und Verzeichnisse vom Pi die dort unter /mnt/usb liegen.
+Das könnten z.B. alle synchronisierten Resilio Sync Verzeichnisse sein.
+Allerdings dauert dies sehr lange, so dass ggf. ein Timeout zuschlägt und die Verbindung getrennt wird bevor alles
+kopiert wurde. Daher ist es sinnvoller ein Kommando zu verwenden, welches erst auf dem Pi alles packt und dann die eine
+Archivdatei am Stück überträgt. Verkleinert auch die Backupstände - ist also deutlich sinnvoller als diese
+Art des Kopierens hier.
+
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
+
+
 == Remote Backup vom Pi als Image ziehen
 
 (Quelle: https://pixelfriedhof.com/en/remote-backup-your-raspberry-pi-with-ssh-via-terminal/)
@@ -61,8 +80,21 @@ Zur Verkleinerung einer abgelegten Imagedatei
 
 xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
-[reftext="Nachkonfiguration"]
-== Nachkonfiguration auf dem PI
+== Basis Konfiguration ändern
+
+Dieses Skript führt die grundlegende Konfiguration auf dem Pi aus. Hier werden sowas wie Sprache, Zeitzone,
+Tastaturlayout etc. festgelegt:
+
+[source,bash]
+----
+/usr/bin/raspi-config
+----
+
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
+
+
+[reftext="AllgemeineKonfiguration"]
+== Allgemeine Konfiguration auf dem PI
 
 === Immer zu Beginn
 
@@ -139,18 +171,6 @@ Anschließend muss die Installation neu aufgesetzt werden mit:
 ----
 sudo dpkg --configure -a
 ----
-
-=== Allgemeine Konfiguration ändern
-
-Dieses Skript führt die allgemeine Konfiguration auf dem Pi aus. Hier werden sowas wie Sprache, Zeitzone,
-Tastaturlayout etc. festgelegt:
-
-[source,bash]
-----
-/usr/bin/raspi-config
-----
-
-xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
 === File Transfer
 
@@ -382,6 +402,63 @@ Dann geht es für Euch zurück auf Anfang! Oder ihr kennt wen der sich auskennt.
 Auf jeden Fall wird es schwierig wenn das automatische mounten kaputt ist.
 
 Im Notfall Eure Zeile wieder entfernen und prüfen ob es jetzt wieder geht.
+
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
+
+== Samba Freigaben einrichten
+
+(Quelle: https://www.raspberry-buy.de/Raspberry_Pi_Tutorial_Windows_Dateifreigabe_Samba_SMB_Server_Installation.html)
+
+1. Pakete installieren
+
+[source,bash]
+----
+sudo apt-get install samba samba-common smbclient (enter)
+----
+2. Reboot
+
+[source,bash]
+----
+sudo reboot
+----
+
+3. Status Samba Service prüfen
+[source,bash]
+----
+sudo service smbd status (enter)
+----
+
+4. Einen Share konfigurieren
+Einen neuen Bereich am Ende der Samba Konfigurationsdatei erstellen der wie das Share heißt (hier ablagen) und sich nicht
+mit bestehenden widersprechen darf.
+[source,conf]
+----
+sudo nano /etc/samba/smb.conf (enter)
+:
+[ablagen]
+   comment = RW Share für Resilio Sync Zugriffe
+   path = /mnt/usb/
+   read only = no
+   browseable = yes
+   create mask = 0777
+----
+
+5. Samba Service neu starten
+[source,bash]
+----
+sudo service smbd restart (enter)
+sudo service nmbd restart (enter)
+----
+
+6. Samba Nutzer anlegen
+[source,bash]
+----
+sudo smbpasswd -a pi (enter)
+----
+
+7. Das Share nutzen
+Unter Windows Rechtsklick auf "Mein PC" dann "Netzlaufwerk verbinden" und "Mit anderer Identität anmelden" auswählen.
+Das Share ablagen für den Host pisync würde so als Path eigegeben werden: \\pisync\ablagen
 
 xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
