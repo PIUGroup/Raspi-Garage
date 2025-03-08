@@ -19,7 +19,8 @@ und eigentlich auch schon mit den Routeraufgaben voll zu tun hat. Einen RAID Ser
 mit Kanonen auf Spatzen geschossen. Also muss es ein Raspi schaffen - zumindest am Anfang.
 
 Da ich das System bereits aufgebaut habe, beschreibe ich hier eigentlich nur die Historie wie ich zu meinem aktuellen
-System gekommen bin. Angefangen habe ich mit einem kompletten Raspi, einer mobilen 5 GB USB Festplatte und der Software
+System gekommen bin. Angefangen habe ich mit einem Raspi 4b Komplettset mit Gehäuse, Netzteil, Lüfter und Wärmeleiter,
+einer mobilen 5 GB USB Festplatte und der Software
 link:https://www.resilio.com/sync/[Resilio Sync], einer Software basierend auf dem Bittorrent Protokoll und geschaffen von der Firma die auch Bittorrent und μTorrent erschaffen haben. Also einer Software die ihrer Historie nach schon für
 Qualtität stand.
 
