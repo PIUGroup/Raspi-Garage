@@ -290,7 +290,7 @@ chmod +x *.sh
 ==== Samba Freigabe einrichten
 
 Hierzu unter folgender Doku schauen:
-xref:../software/03-manualconfig.adoc#_samba_freigaben_einrichten[Samba Freigaben einrichten]
+xref:../software/03-manualconfig.adoc#samba-freigaben-einrichten[Samba Freigaben einrichten]
 
 xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
