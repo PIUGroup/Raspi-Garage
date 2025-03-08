@@ -222,7 +222,7 @@ sudo service resilio-sync start
 ----
 
 Ob er läuft können wir prüfen über: https://pisync:8888/gui/
-Hier müsst ihr pisync durch Eurem Hostname des Pi oder dessen IP Adresse ersetzen.
+Hier müsst ihr pisync durch Euren Hostname des Pi oder dessen IP Adresse ersetzen.
 
 ==== Lizenz übertragen
 
