@@ -100,7 +100,7 @@ noch nicht.
 
 Über den Imager ist man in der Lage gleich die Grundkonfigurationen durchzuführen, Locale, Zeitzone, Tastaturlayout,
 WLAN und weitere Dinge - hier sollte man so viel wie möglich gleich vorkonfigurieren.
-Wenn das Image aufgespielt ist, kann man es in den Pi tun und diesen starten.
+Wenn das Image aufgespielt ist, kann man die SD Karte mit dem Image in den Pi stecken und diesen starten.
 
 ==== Mit dem Pi verbinden
 
