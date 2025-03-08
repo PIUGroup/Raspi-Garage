@@ -1,8 +1,8 @@
 :imagesdir: ./images
 
-== Aufbau eines PI Sync
+== Aufbau eines Sync PI mit Resilio
 
-Aktuelle Anleitung: https://docs.google.com/document/d/1e8PSpYmB3lB-aiP_I1Ctmw6ml3CtudAvyRwGx4Q4UPc/edit?tab=t.0
+// Aktuelle Anleitung: https://docs.google.com/document/d/1e8PSpYmB3lB-aiP_I1Ctmw6ml3CtudAvyRwGx4Q4UPc/edit?tab=t.0
 
 === Quellen
 
