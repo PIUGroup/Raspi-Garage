@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.16">
-<title>Aufbau eines PI Sync</title>
+<title>Aufbau eines Sync PI mit Resilio</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -443,7 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#aufbau-eines-pi-sync">Aufbau eines PI Sync</a>
+<li><a href="#aufbau-eines-sync-pi-mit-resilio">Aufbau eines Sync PI mit Resilio</a>
 <ul class="sectlevel2">
 <li><a href="#quellen">Quellen</a></li>
 <li><a href="#ziel">Ziel</a></li>
@@ -457,11 +457,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="aufbau-eines-pi-sync"><a class="anchor" href="#aufbau-eines-pi-sync"></a>Aufbau eines PI Sync</h2>
+<h2 id="aufbau-eines-sync-pi-mit-resilio"><a class="anchor" href="#aufbau-eines-sync-pi-mit-resilio"></a>Aufbau eines Sync PI mit Resilio</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Aktuelle Anleitung: <a href="https://docs.google.com/document/d/1e8PSpYmB3lB-aiP_I1Ctmw6ml3CtudAvyRwGx4Q4UPc/edit?tab=t.0" class="bare">https://docs.google.com/document/d/1e8PSpYmB3lB-aiP_I1Ctmw6ml3CtudAvyRwGx4Q4UPc/edit?tab=t.0</a></p>
-</div>
 <div class="sect2">
 <h3 id="quellen"><a class="anchor" href="#quellen"></a>Quellen</h3>
 <div class="ulist">
@@ -486,7 +483,8 @@ mit Kanonen auf Spatzen geschossen. Also muss es ein Raspi schaffen - zumindest 
 </div>
 <div class="paragraph">
 <p>Da ich das System bereits aufgebaut habe, beschreibe ich hier eigentlich nur die Historie wie ich zu meinem aktuellen
-System gekommen bin. Angefangen habe ich mit einem kompletten Raspi, einer mobilen 5 GB USB Festplatte und der Software
+System gekommen bin. Angefangen habe ich mit einem Raspi 4b Komplettset mit Gehäuse, Netzteil, Lüfter und Kühlkörper,
+einer mobilen 5 GB USB Festplatte und der Software
 <a href="https://www.resilio.com/sync/">Resilio Sync</a>, einer Software basierend auf dem Bittorrent Protokoll und geschaffen von der Firma die auch Bittorrent und μTorrent erschaffen haben. Also einer Software die ihrer Historie nach schon für
 Qualtität stand.</p>
 </div>
@@ -588,7 +586,7 @@ noch nicht.</p>
 <div class="paragraph">
 <p>Über den Imager ist man in der Lage gleich die Grundkonfigurationen durchzuführen, Locale, Zeitzone, Tastaturlayout,
 WLAN und weitere Dinge - hier sollte man so viel wie möglich gleich vorkonfigurieren.
-Wenn das Image aufgespielt ist, kann man es in den Pi tun und diesen starten.</p>
+Wenn das Image aufgespielt ist, kann man die SD Karte mit dem Image in den Pi stecken und diesen starten.</p>
 </div>
 </div>
 <div class="sect3">
@@ -743,7 +741,7 @@ Die Warnung lautet irgendwas in diese Richtung:</p>
 </div>
 <div class="paragraph">
 <p>Ob er läuft können wir prüfen über: <a href="https://pisync:8888/gui/" class="bare">https://pisync:8888/gui/</a>
-Hier müsst ihr pisync durch Eurem Hostname des Pi oder dessen IP Adresse ersetzen.</p>
+Hier müsst ihr pisync durch Euren Hostname des Pi oder dessen IP Adresse ersetzen.</p>
 </div>
 </div>
 <div class="sect3">
@@ -771,6 +769,62 @@ oder die noch offene andere gitbash genutzt und die Lizenzdatei ein Verzeichnis 
 kann die UI Oberfläche von Resilio im Browser die Lizenzdatei einlesen.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="nützliche-skripte-für-den-pi-nutzer"><a class="anchor" href="#nützliche-skripte-für-den-pi-nutzer"></a>Nützliche Skripte für den pi Nutzer</h4>
+<div class="paragraph">
+<p>Allgemein ist der Pi jetzt mit Resilio Sync soweit konfiguriert und arbeitsfähig. Bei mir startet Resilio auch nach einem Neustart automatisch, so dass ich diesmal gar kein eigenes Start/Stop Skript schreiben musste. Ihr könnt hier also eigentlich mit Lesen aufhören, der Rest ist optional.</p>
+</div>
+<div class="paragraph">
+<p>Allerdings sind mir bei der Arbeit ein paar übliche Schritte aufgefallen, die man immer wieder vornehmen muss. Weil man mal ein paar Linux Updates einspielt oder es einen Stromausfall gab etc. Genau für diese
+Zwecke habe ich im /home/pi ein paar "Skripte" (das sind Einzeiler keine Skripte) abgelegt:</p>
+</div>
+<div class="listingblock">
+<div class="title">resilio_start.sh</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"> #!/bin/sh
+sudo service resilio-sync start</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">resilio_stop.sh</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"> #!/bin/sh
+sudo service resilio-sync stop</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">restart.sh</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"> #!/bin/sh
+sudo shutdown -r now</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">shutdown.sh</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"> #!/bin/sh
+sudo shutdown now</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Im Verzeichnis noch den Befehl zur Vergabe des Ausführungsrechts ausführen und dann könnt ihr die Skripte nutzen.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">chmod +x *.sh</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="samba-freigabe-einrichten"><a class="anchor" href="#samba-freigabe-einrichten"></a>Samba Freigabe einrichten</h4>
+<div class="paragraph">
+<p>Hierzu unter folgender Doku schauen:
+<a href="../software/03-manualconfig.html#samba-freigaben-einrichten">Samba Freigaben einrichten</a></p>
+</div>
+<div class="paragraph">
+<p><a href="../index.html#softwareübersicht">Zurück zur Übersicht</a>.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -778,7 +832,7 @@ kann die UI Oberfläche von Resilio im Browser die Lizenzdatei einlesen.</p>
 <div id="footer">
 <div id="footer-text">
 Version Ausgabe 1.0.0-SNAPSHOT<br>
-Last updated 19.02.2025 
+Last updated 08.03.2025 
 </div>
 </div>
 </body>
