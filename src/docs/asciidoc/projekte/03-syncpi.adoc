@@ -245,8 +245,54 @@ Leider kann Resilio nicht aus /home/pi lesen, weil es dazu keine Rechte besitzt.
 oder die noch offene andere gitbash genutzt und die Lizenzdatei ein Verzeichnis höher geschoben unter /home. Von dort
 kann die UI Oberfläche von Resilio im Browser die Lizenzdatei einlesen.
 
+==== Nützliche Skripte für den pi Nutzer
 
+Allgemein ist der Pi jetzt mit Resilio Sync soweit konfiguriert und arbeitsfähig. Bei mir startet Resilio auch nach einem Neustart automatisch, so dass ich diesmal gar kein eigenes Start/Stop Skript schreiben musste. Ihr könnt hier also eigentlich mit Lesen aufhören, der Rest ist optional.
 
+Allerdings sind mir bei der Arbeit ein paar übliche Schritte aufgefallen, die man immer wieder vornehmen muss. Weil man mal ein paar Linux Updates einspielt oder es einen Stromausfall gab etc. Genau für diese
+Zwecke habe ich im /home/pi ein paar "Skripte" (das sind Einzeiler keine Skripte) abgelegt:
+
+.resilio_start.sh
+[source,bash]
+----
+ #!/bin/sh
+sudo service resilio-sync start
+----
+
+.resilio_stop.sh
+[source,bash]
+----
+ #!/bin/sh
+sudo service resilio-sync stop
+----
+
+.restart.sh
+[source,bash]
+----
+ #!/bin/sh
+sudo shutdown -r now
+----
+
+.shutdown.sh
+[source,bash]
+----
+ #!/bin/sh
+sudo shutdown now
+----
+
+Im Verzeichnis noch den Befehl zur Vergabe des Ausführungsrechts ausführen und dann könnt ihr die Skripte nutzen.
+
+[source,bash]
+----
+chmod +x *.sh
+----
+
+==== Samba Freigabe einrichten
+
+Hierzu unter folgender Doku schauen:
+xref:../software/03-manualconfig.adoc#_samba_freigaben_einrichten[Samba Freigaben einrichten]
+
+xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
 
 
