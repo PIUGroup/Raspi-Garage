@@ -248,6 +248,26 @@ xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
 == WLAN ändern
 
+==== Raspi Config
+
+Die Methode über die Raspi Config scheint neuerdings besser zu gehen, da bei mir die alternative Methode beim Raspi 4 nicht mehr funktioniert hat.
+(Vielleicht hatte ich auch irgendwelche bash Spezifika beim Kommando ausführen nicht beachtet)
+Das hier scheint jedenfalls ein sicherer und noch dazu einfacher Weg zu sein:
+
+[source, bash]
+----
+sudo raspi-config nonint do_wifi_ssid_passphrase <ssid> <passphrase> [hidden] [plain]
+----
+
+Beispiel:
+[source, bash]
+----
+sudo raspi-config nonint do_wifi_ssid_passphrase RaspiNet 1234567890ABCDEFG
+----
+
+Gegebenenfalls muss man die Parameter SSID und passphrase quoten - das habe ich noch nicht benötigt, da ich immer bewusst einfache Zeichenketten gewählt habe.
+
+=== Alternative Methode
 (Quelle: https://u-labs.de/portal/raspberry-pi-wlan-verbindung-nachtraeglich-einrichten-oder-aendern-so-geht-es-grafisch-konsole/)
 
 === Netzwerk Schnittstellen ermitteln
