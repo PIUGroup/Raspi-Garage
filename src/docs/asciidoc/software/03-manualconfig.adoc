@@ -248,7 +248,7 @@ xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
 == WLAN ändern
 
-=== Raspi Config
+=== Raspi Config Methode
 
 Quelle: https://www.raspberrypi.com/documentation/computers/configuration.html
 
