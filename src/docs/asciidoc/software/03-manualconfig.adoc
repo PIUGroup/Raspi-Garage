@@ -248,9 +248,31 @@ xref:../index.adoc#softwareübersicht[Zurück zur Übersicht].
 
 == WLAN ändern
 
+=== Raspi Config Methode
+
+Quelle: https://www.raspberrypi.com/documentation/computers/configuration.html
+
+Die Methode über die Raspi Config scheint neuerdings besser zu gehen, da bei mir die alternative Methode beim Raspi 4 nicht mehr funktioniert hat.
+(Vielleicht hatte ich auch irgendwelche bash Spezifika beim Kommando ausführen nicht beachtet)
+Das hier scheint jedenfalls ein sicherer und noch dazu einfacher Weg zu sein:
+
+[source, bash]
+----
+sudo raspi-config nonint do_wifi_ssid_passphrase <ssid> <passphrase> [hidden] [plain]
+----
+
+Beispiel:
+[source, bash]
+----
+sudo raspi-config nonint do_wifi_ssid_passphrase RaspiNet 1234567890ABCDEFG
+----
+
+Gegebenenfalls muss man die Parameter SSID und passphrase quoten - das habe ich noch nicht benötigt, da ich immer bewusst einfache Zeichenketten gewählt habe.
+
+=== Alternative Methode
 (Quelle: https://u-labs.de/portal/raspberry-pi-wlan-verbindung-nachtraeglich-einrichten-oder-aendern-so-geht-es-grafisch-konsole/)
 
-=== Netzwerk Schnittstellen ermitteln
+==== Netzwerk Schnittstellen ermitteln
 
 Als erstes schauen wir welche Netzwerkschnittstellen am Pi vorhanden sind. In der Standardkonfiguration wird uns nur wlan0
 interessieren.
@@ -260,7 +282,7 @@ interessieren.
 netstat -i
 ----
 
-=== WLAN Liste
+==== WLAN Liste
 
 Jetzt scannen über die Netzwerkschnittstelle die empfangenen WLAN IDs um zu sehen ob das zu Konfigurierende
 nah genug ist um empfangen zu werden.
@@ -270,7 +292,7 @@ nah genug ist um empfangen zu werden.
  sudo iwlist wlan0 scan | grep ESSID
 ----
 
-=== Zugangsdaten ändern
+==== Zugangsdaten ändern
 
 Nun sind die Zugangsdaten des WLANs im System zu hinterlegen. Dies können wir wie folgt tun:
 
@@ -279,7 +301,7 @@ Nun sind die Zugangsdaten des WLANs im System zu hinterlegen. Dies können wir w
 sudo wpa_passphrase "Eure WLAN SSID" "Euer Netzwerkschlüssel" | sudo tee -a /etc/wpa_supplicant/wpa_supplicant.conf
 ----
 
-=== Configdatei prüfen
+==== Configdatei prüfen
 
 Dei WLAN Konfiguration unter `/etc/wpa_supplicant/wpa_supplicant.conf` sollte nun Euren Netzwerkeintrag in folgender
 Form mit enthalten:
@@ -309,7 +331,7 @@ key_mgmt=WPA-PSK
 
 Damit wird angegeben welches Verschlüsslungsverfahren im WLAN genutzt wird.
 
-=== Aktivieren der Konfiguration
+==== Aktivieren der Konfiguration
 
 Wir können die Konfiguration aktivieren mit:
 
