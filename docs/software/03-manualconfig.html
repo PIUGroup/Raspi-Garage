@@ -463,14 +463,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#wlan-einrichten">WLAN einrichten</a></li>
 <li><a href="#wlan-ändern">WLAN ändern</a>
-<ul class="sectlevel3">
+<ul class="sectlevel2">
 <li><a href="#raspi-config">Raspi Config</a></li>
 <li><a href="#alternative-methode">Alternative Methode</a></li>
-<li><a href="#netzwerk-schnittstellen-ermitteln">Netzwerk Schnittstellen ermitteln</a></li>
-<li><a href="#wlan-liste">WLAN Liste</a></li>
-<li><a href="#zugangsdaten-ändern">Zugangsdaten ändern</a></li>
-<li><a href="#configdatei-prüfen">Configdatei prüfen</a></li>
-<li><a href="#aktivieren-der-konfiguration">Aktivieren der Konfiguration</a></li>
 </ul>
 </li>
 <li><a href="#usb-mobile-festplatten-einrichten">USB - Mobile Festplatten einrichten</a></li>
@@ -831,8 +826,11 @@ wpa_cli status</code></pre>
 <div class="sect1">
 <h2 id="wlan-ändern"><a class="anchor" href="#wlan-ändern"></a>WLAN ändern</h2>
 <div class="sectionbody">
-<div class="sect3">
-<h4 id="raspi-config"><a class="anchor" href="#raspi-config"></a>Raspi Config</h4>
+<div class="sect2">
+<h3 id="raspi-config"><a class="anchor" href="#raspi-config"></a>Raspi Config</h3>
+<div class="paragraph">
+<p>Quelle: <a href="https://www.raspberrypi.com/documentation/computers/configuration.html" class="bare">https://www.raspberrypi.com/documentation/computers/configuration.html</a></p>
+</div>
 <div class="paragraph">
 <p>Die Methode über die Raspi Config scheint neuerdings besser zu gehen, da bei mir die alternative Methode beim Raspi 4 nicht mehr funktioniert hat.
 (Vielleicht hatte ich auch irgendwelche bash Spezifika beim Kommando ausführen nicht beachtet)
@@ -860,9 +858,8 @@ Das hier scheint jedenfalls ein sicherer und noch dazu einfacher Weg zu sein:</p
 <div class="paragraph">
 <p>(Quelle: <a href="https://u-labs.de/portal/raspberry-pi-wlan-verbindung-nachtraeglich-einrichten-oder-aendern-so-geht-es-grafisch-konsole/" class="bare">https://u-labs.de/portal/raspberry-pi-wlan-verbindung-nachtraeglich-einrichten-oder-aendern-so-geht-es-grafisch-konsole/</a>)</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="netzwerk-schnittstellen-ermitteln"><a class="anchor" href="#netzwerk-schnittstellen-ermitteln"></a>Netzwerk Schnittstellen ermitteln</h3>
+<div class="sect3">
+<h4 id="netzwerk-schnittstellen-ermitteln"><a class="anchor" href="#netzwerk-schnittstellen-ermitteln"></a>Netzwerk Schnittstellen ermitteln</h4>
 <div class="paragraph">
 <p>Als erstes schauen wir welche Netzwerkschnittstellen am Pi vorhanden sind. In der Standardkonfiguration wird uns nur wlan0
 interessieren.</p>
@@ -873,8 +870,8 @@ interessieren.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="wlan-liste"><a class="anchor" href="#wlan-liste"></a>WLAN Liste</h3>
+<div class="sect3">
+<h4 id="wlan-liste"><a class="anchor" href="#wlan-liste"></a>WLAN Liste</h4>
 <div class="paragraph">
 <p>Jetzt scannen über die Netzwerkschnittstelle die empfangenen WLAN IDs um zu sehen ob das zu Konfigurierende
 nah genug ist um empfangen zu werden.</p>
@@ -885,8 +882,8 @@ nah genug ist um empfangen zu werden.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="zugangsdaten-ändern"><a class="anchor" href="#zugangsdaten-ändern"></a>Zugangsdaten ändern</h3>
+<div class="sect3">
+<h4 id="zugangsdaten-ändern"><a class="anchor" href="#zugangsdaten-ändern"></a>Zugangsdaten ändern</h4>
 <div class="paragraph">
 <p>Nun sind die Zugangsdaten des WLANs im System zu hinterlegen. Dies können wir wie folgt tun:</p>
 </div>
@@ -896,8 +893,8 @@ nah genug ist um empfangen zu werden.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="configdatei-prüfen"><a class="anchor" href="#configdatei-prüfen"></a>Configdatei prüfen</h3>
+<div class="sect3">
+<h4 id="configdatei-prüfen"><a class="anchor" href="#configdatei-prüfen"></a>Configdatei prüfen</h4>
 <div class="paragraph">
 <p>Dei WLAN Konfiguration unter <code>/etc/wpa_supplicant/wpa_supplicant.conf</code> sollte nun Euren Netzwerkeintrag in folgender
 Form mit enthalten:</p>
@@ -932,8 +929,8 @@ ob beim Verschlüsseln auf der Konsole irgendwelche Sonderzeichen Probleme berei
 <p>Damit wird angegeben welches Verschlüsslungsverfahren im WLAN genutzt wird.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="aktivieren-der-konfiguration"><a class="anchor" href="#aktivieren-der-konfiguration"></a>Aktivieren der Konfiguration</h3>
+<div class="sect3">
+<h4 id="aktivieren-der-konfiguration"><a class="anchor" href="#aktivieren-der-konfiguration"></a>Aktivieren der Konfiguration</h4>
 <div class="paragraph">
 <p>Wir können die Konfiguration aktivieren mit:</p>
 </div>
@@ -961,6 +958,7 @@ wpa_cli status</code></pre>
 </div>
 <div class="paragraph">
 <p><a href="../index.html#softwareübersicht">Zurück zur Übersicht</a>.</p>
+</div>
 </div>
 </div>
 </div>
