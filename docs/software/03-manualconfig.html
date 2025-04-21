@@ -463,7 +463,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#wlan-einrichten">WLAN einrichten</a></li>
 <li><a href="#wlan-ändern">WLAN ändern</a>
-<ul class="sectlevel2">
+<ul class="sectlevel3">
+<li><a href="#raspi-config">Raspi Config</a></li>
+<li><a href="#alternative-methode">Alternative Methode</a></li>
 <li><a href="#netzwerk-schnittstellen-ermitteln">Netzwerk Schnittstellen ermitteln</a></li>
 <li><a href="#wlan-liste">WLAN Liste</a></li>
 <li><a href="#zugangsdaten-ändern">Zugangsdaten ändern</a></li>
@@ -829,8 +831,35 @@ wpa_cli status</code></pre>
 <div class="sect1">
 <h2 id="wlan-ändern"><a class="anchor" href="#wlan-ändern"></a>WLAN ändern</h2>
 <div class="sectionbody">
+<div class="sect3">
+<h4 id="raspi-config"><a class="anchor" href="#raspi-config"></a>Raspi Config</h4>
+<div class="paragraph">
+<p>Die Methode über die Raspi Config scheint neuerdings besser zu gehen, da bei mir die alternative Methode beim Raspi 4 nicht mehr funktioniert hat.
+(Vielleicht hatte ich auch irgendwelche bash Spezifika beim Kommando ausführen nicht beachtet)
+Das hier scheint jedenfalls ein sicherer und noch dazu einfacher Weg zu sein:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo raspi-config nonint do_wifi_ssid_passphrase &lt;ssid&gt; &lt;passphrase&gt; [hidden] [plain]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Beispiel:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo raspi-config nonint do_wifi_ssid_passphrase RaspiNet 1234567890ABCDEFG</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Gegebenenfalls muss man die Parameter SSID und passphrase quoten - das habe ich noch nicht benötigt, da ich immer bewusst einfache Zeichenketten gewählt habe.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="alternative-methode"><a class="anchor" href="#alternative-methode"></a>Alternative Methode</h3>
 <div class="paragraph">
 <p>(Quelle: <a href="https://u-labs.de/portal/raspberry-pi-wlan-verbindung-nachtraeglich-einrichten-oder-aendern-so-geht-es-grafisch-konsole/" class="bare">https://u-labs.de/portal/raspberry-pi-wlan-verbindung-nachtraeglich-einrichten-oder-aendern-so-geht-es-grafisch-konsole/</a>)</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="netzwerk-schnittstellen-ermitteln"><a class="anchor" href="#netzwerk-schnittstellen-ermitteln"></a>Netzwerk Schnittstellen ermitteln</h3>
@@ -1268,7 +1297,7 @@ sudo apt dist-upgrade</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version Ausgabe 1.0.0-SNAPSHOT<br>
-Last updated 08.03.2025 
+Last updated 21.04.2025 
 </div>
 </div>
 </body>
